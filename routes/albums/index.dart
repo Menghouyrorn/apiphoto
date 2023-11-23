@@ -25,7 +25,11 @@ Future<Response> _getAll(RequestContext context) async {
   final prisma = context.read<PrismaClient>();
   final data = (await prisma.tblalbums.findMany()).toList();
 
-  return Future.value(Response.json(body: data));
+  return Response.json(
+    body: {
+      'albums':data
+    }
+  );
 }
 
 // create data

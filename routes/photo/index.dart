@@ -27,7 +27,11 @@ Future<Response> _getAll(RequestContext context) async {
   final prisma = context.read<PrismaClient>();
   final photo = (await prisma.tblPhoto.findMany()).toList();
 
-  return Future.value(Response.json(body: photo));
+  return Response.json(
+    body: {
+      'photo':photo
+    }
+  );
 }
 
 // insert data
