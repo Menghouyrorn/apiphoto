@@ -6,7 +6,6 @@ import 'dart:io';
 import 'package:crypto/crypto.dart';
 import 'package:dart_frog/dart_frog.dart';
 import 'package:photo_api/src/generated/prisma/prisma_client.dart';
-import 'package:photo_api/user_repository.dart';
 
 Future<Response> onRequest(RequestContext context) async {
   final method = context.request.method;
