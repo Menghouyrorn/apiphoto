@@ -1,7 +1,10 @@
-import 'dart:io';
+// ignore_for_file: lines_longer_than_80_chars
 
+import 'dart:io';
 import 'package:dart_frog/dart_frog.dart';
 import 'package:photo_api/src/generated/prisma/prisma_client.dart';
+
+import '../login/index.dart';
 
 Future<Response> onRequest(RequestContext context) {
   final method = context.request.method;
@@ -22,86 +25,132 @@ Future<Response> onRequest(RequestContext context) {
 // get data
 
 Future<Response> _getAll(RequestContext context) async {
-  final prisma = context.read<PrismaClient>();
-  final data = (await prisma.tblalbums.findMany()).toList();
+  try {
+    final prisma = context.read<PrismaClient>();
+    final data = (await prisma.tblalbums.findMany()).toList();
 
-  return Response.json(
-    body: {
-      'albums':data
-    }
-  );
+    return Response.json(body: {
+      'code': 0,
+      'message': 'success',
+      'Data': data,
+    });
+  } catch (e) {
+    return Response.json(body: {
+      'code': 1,
+      'message': e,
+      'Data': [],
+    });
+  }
 }
 
 // create data
 Future<Response> _createAlbums(RequestContext context) async {
-  final json = await context.request.json() as Map<String, dynamic>;
-  final userid = json['userid'] as int?;
-  final title = json['title'] as String?;
-  final created_at = DateTime.now();
-  final updated_at = DateTime.now();
+  try {
+    final json = await context.request.json() as Map<String, dynamic>;
+    final idfolder = json['idfolder'] as String;
+    final title = json['title'] as String?;
+    final created_at = DateTime.now();
+    final updated_at = DateTime.now();
 
-  if (userid == null || title == null) {
-    return Response.json(
-        body: {'message': 'please input data'},
-        statusCode: HttpStatus.badRequest);
+    if (title == null) {
+      return Response.json(
+          body: {'message': 'please input data'},
+          statusCode: HttpStatus.badRequest);
+    }
+    final prisma = context.read<PrismaClient>();
+    final albums = await prisma.tblalbums.create(
+      data: TblalbumsCreateInput(
+        idfolder: idfolder,
+        title: title,
+        createdAt: created_at,
+        updatedAt: updated_at,
+      ),
+    );
+    return Response.json(body: {
+      'code': 0,
+      'message': 'success',
+      'Data': albums,
+    }, statusCode: 201);
+  } catch (e) {
+    return Response.json(body: {
+      'code': 1,
+      'message': e,
+      'Data': {},
+    });
   }
-  final prisma = context.read<PrismaClient>();
-  final albums = await prisma.tblalbums.create(
-    data: TblalbumsCreateInput(
-      userid: userid,
-      title: title,
-      createdAt: created_at,
-      updatedAt: updated_at,
-    ),
-  );
-
-  return Response.json(
-      body: {'message': 'create albums success', 'albums': albums},
-      statusCode: 201);
 }
 
 // update data
 Future<Response> _updateAlbums(RequestContext context) async {
-  final json = await context.request.json() as Map<String, dynamic>;
-  final id = json['id'] as int?;
-  final userid = json['userid'] as int?;
-  final title = json['title'] as String?;
-  final created_at = DateTime.now();
-  final updated_at = DateTime.now();
+  try {
+    final json = await context.request.json() as Map<String, dynamic>;
+    final id = json['id'] as int?;
+    final userid = json['userid'] as int?;
+    final title = json['title'] as String?;
+    final updateOption = json['update'] as String?;
+    final created_at = DateTime.now();
+    final updated_at = DateTime.now();
+    dynamic updatealbums;
+    if (updateOption == 'update') {
+      final prisma = context.read<PrismaClient>();
+      updatealbums = await prisma.tblalbums.update(
+        data: TblalbumsUpdateInput(
+          title: NullableStringFieldUpdateOperationsInput(set: title),
+          updatedAt:
+              NullableDateTimeFieldUpdateOperationsInput(set: updated_at),
+        ),
+        where: TblalbumsWhereUniqueInput(id: id),
+      );
+    } else if (updateOption == 'updateUserid') {
+      final prisma = context.read<PrismaClient>();
+      updatealbums = await prisma.tblalbums.updateMany(
+        data: TblalbumsUpdateManyMutationInput(
+          userid: NullableIntFieldUpdateOperationsInput(set: userid),
+          updatedAt:
+              NullableDateTimeFieldUpdateOperationsInput(set: updated_at),
+        ),
+        where: TblalbumsWhereInput(
+          id:IntFilter(equals: id),
+        ),
+      );
+    }
 
-  if (userid == null || title == null) {
-    return Response.json(
-        body: {'message': 'please input data in text field'},
-        statusCode: HttpStatus.badRequest);
+    return Response.json(body: {
+      'code': 0,
+      'message': 'success',
+      'Data': updatealbums,
+    }, statusCode: 201);
+  } catch (e) {
+    print(e);
+    return Response.json(body: {
+      'code': 1,
+      'message': e,
+      'Data': {},
+    });
   }
-
-  final prisma = context.read<PrismaClient>();
-  final updatealbums = await prisma.tblalbums.update(
-    data: TblalbumsUpdateInput(
-      userid: NullableIntFieldUpdateOperationsInput(set: userid),
-      title: NullableStringFieldUpdateOperationsInput(set: title),
-      createdAt: NullableDateTimeFieldUpdateOperationsInput(set: created_at),
-      updatedAt: NullableDateTimeFieldUpdateOperationsInput(set: updated_at),
-    ),
-    where: TblalbumsWhereUniqueInput(id: id),
-  );
-
-  return Response.json(
-      body: {'message': 'Update data success', 'albums': updatealbums},
-      statusCode: 201);
 }
 
 // delete data
 Future<Response> _deleteAlbums(RequestContext context) async {
-  final json = await context.request.json() as Map<String, dynamic>;
+  try {
+    final json = await context.request.json() as Map<String, dynamic>;
 
-  final id = json['id'] as int?;
+    final id = json['id'] as int?;
 
-  final prisma = context.read<PrismaClient>();
-  final deletealbums =
-      await prisma.tblalbums.delete(where: TblalbumsWhereUniqueInput(id: id));
+    final prisma = context.read<PrismaClient>();
+    final deletealbums =
+        await prisma.tblalbums.delete(where: TblalbumsWhereUniqueInput(id: id));
 
-  return Response.json(
-      body: {'message': 'Delete success', 'albums': deletealbums},
-      statusCode: 201);
+    return Response.json(body: {
+      'code': 0,
+      'message': 'success',
+      'Data': deletealbums,
+    }, statusCode: 201);
+  } catch (e) {
+    return Response.json(body: {
+      'code': 1,
+      'message': e,
+      'Data': {},
+    });
+  }
 }

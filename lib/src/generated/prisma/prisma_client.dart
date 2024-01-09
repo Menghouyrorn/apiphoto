@@ -1,5 +1,6 @@
+// ignore_for_file: invalid_use_of_internal_member
+
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:dart_frog/src/middleware.dart';
 import 'package:dart_jsonwebtoken/dart_jsonwebtoken.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:orm/binary_engine.dart' as _i5;
@@ -13,10 +14,12 @@ part 'prisma_client.g.dart';
 
 enum UserScalarFieldEnum implements _i1.PrismaEnum {
   id,
-  username,
+  fname,
+  lname,
   email,
   phone,
   password,
+  profile,
   role,
   @JsonValue('created_at')
   createdAt(r'created_at'),
@@ -49,6 +52,7 @@ enum TblPhotoScalarFieldEnum implements _i1.PrismaEnum {
 
 enum TblalbumsScalarFieldEnum implements _i1.PrismaEnum {
   id,
+  idfolder,
   userid,
   title,
   @JsonValue('created_at')
@@ -101,10 +105,12 @@ class UserWhereInput implements _i1.JsonSerializable {
     this.OR,
     this.NOT,
     this.id,
-    this.username,
+    this.fname,
+    this.lname,
     this.email,
     this.phone,
     this.password,
+    this.profile,
     this.role,
     this.createdAt,
     this.updatedAt,
@@ -121,13 +127,17 @@ class UserWhereInput implements _i1.JsonSerializable {
 
   final IntFilter? id;
 
-  final StringNullableFilter? username;
+  final StringNullableFilter? fname;
+
+  final StringNullableFilter? lname;
 
   final StringFilter? email;
 
   final StringNullableFilter? phone;
 
   final StringNullableFilter? password;
+
+  final StringNullableFilter? profile;
 
   final StringNullableFilter? role;
 
@@ -145,10 +155,12 @@ class UserWhereInput implements _i1.JsonSerializable {
 class UserOrderByWithRelationInput implements _i1.JsonSerializable {
   const UserOrderByWithRelationInput({
     this.id,
-    this.username,
+    this.fname,
+    this.lname,
     this.email,
     this.phone,
     this.password,
+    this.profile,
     this.role,
     this.createdAt,
     this.updatedAt,
@@ -159,13 +171,17 @@ class UserOrderByWithRelationInput implements _i1.JsonSerializable {
 
   final SortOrder? id;
 
-  final SortOrder? username;
+  final SortOrder? fname;
+
+  final SortOrder? lname;
 
   final SortOrder? email;
 
   final SortOrder? phone;
 
   final SortOrder? password;
+
+  final SortOrder? profile;
 
   final SortOrder? role;
 
@@ -204,10 +220,12 @@ class UserWhereUniqueInput implements _i1.JsonSerializable {
 class UserOrderByWithAggregationInput implements _i1.JsonSerializable {
   const UserOrderByWithAggregationInput({
     this.id,
-    this.username,
+    this.fname,
+    this.lname,
     this.email,
     this.phone,
     this.password,
+    this.profile,
     this.role,
     this.createdAt,
     this.updatedAt,
@@ -223,13 +241,17 @@ class UserOrderByWithAggregationInput implements _i1.JsonSerializable {
 
   final SortOrder? id;
 
-  final SortOrder? username;
+  final SortOrder? fname;
+
+  final SortOrder? lname;
 
   final SortOrder? email;
 
   final SortOrder? phone;
 
   final SortOrder? password;
+
+  final SortOrder? profile;
 
   final SortOrder? role;
 
@@ -266,10 +288,12 @@ class UserScalarWhereWithAggregatesInput implements _i1.JsonSerializable {
     this.OR,
     this.NOT,
     this.id,
-    this.username,
+    this.fname,
+    this.lname,
     this.email,
     this.phone,
     this.password,
+    this.profile,
     this.role,
     this.createdAt,
     this.updatedAt,
@@ -287,13 +311,17 @@ class UserScalarWhereWithAggregatesInput implements _i1.JsonSerializable {
 
   final IntWithAggregatesFilter? id;
 
-  final StringNullableWithAggregatesFilter? username;
+  final StringNullableWithAggregatesFilter? fname;
+
+  final StringNullableWithAggregatesFilter? lname;
 
   final StringWithAggregatesFilter? email;
 
   final StringNullableWithAggregatesFilter? phone;
 
   final StringNullableWithAggregatesFilter? password;
+
+  final StringNullableWithAggregatesFilter? profile;
 
   final StringNullableWithAggregatesFilter? role;
 
@@ -524,6 +552,7 @@ class TblalbumsWhereInput implements _i1.JsonSerializable {
     this.OR,
     this.NOT,
     this.id,
+    this.idfolder,
     this.userid,
     this.title,
     this.createdAt,
@@ -540,6 +569,8 @@ class TblalbumsWhereInput implements _i1.JsonSerializable {
   final Iterable<TblalbumsWhereInput>? NOT;
 
   final IntFilter? id;
+
+  final StringFilter? idfolder;
 
   final IntNullableFilter? userid;
 
@@ -559,6 +590,7 @@ class TblalbumsWhereInput implements _i1.JsonSerializable {
 class TblalbumsOrderByWithRelationInput implements _i1.JsonSerializable {
   const TblalbumsOrderByWithRelationInput({
     this.id,
+    this.idfolder,
     this.userid,
     this.title,
     this.createdAt,
@@ -570,6 +602,8 @@ class TblalbumsOrderByWithRelationInput implements _i1.JsonSerializable {
       _$TblalbumsOrderByWithRelationInputFromJson(json);
 
   final SortOrder? id;
+
+  final SortOrder? idfolder;
 
   final SortOrder? userid;
 
@@ -603,6 +637,7 @@ class TblalbumsWhereUniqueInput implements _i1.JsonSerializable {
 class TblalbumsOrderByWithAggregationInput implements _i1.JsonSerializable {
   const TblalbumsOrderByWithAggregationInput({
     this.id,
+    this.idfolder,
     this.userid,
     this.title,
     this.createdAt,
@@ -619,6 +654,8 @@ class TblalbumsOrderByWithAggregationInput implements _i1.JsonSerializable {
       _$TblalbumsOrderByWithAggregationInputFromJson(json);
 
   final SortOrder? id;
+
+  final SortOrder? idfolder;
 
   final SortOrder? userid;
 
@@ -657,6 +694,7 @@ class TblalbumsScalarWhereWithAggregatesInput implements _i1.JsonSerializable {
     this.OR,
     this.NOT,
     this.id,
+    this.idfolder,
     this.userid,
     this.title,
     this.createdAt,
@@ -674,6 +712,8 @@ class TblalbumsScalarWhereWithAggregatesInput implements _i1.JsonSerializable {
   final Iterable<TblalbumsScalarWhereWithAggregatesInput>? NOT;
 
   final IntWithAggregatesFilter? id;
+
+  final StringWithAggregatesFilter? idfolder;
 
   final IntNullableWithAggregatesFilter? userid;
 
@@ -878,10 +918,12 @@ class TblhistoryScalarWhereWithAggregatesInput implements _i1.JsonSerializable {
 @_i1.jsonSerializable
 class UserCreateInput implements _i1.JsonSerializable {
   const UserCreateInput({
-    this.username,
+    this.fname,
+    this.lname,
     required this.email,
     this.phone,
     this.password,
+    this.profile,
     this.role,
     this.createdAt,
     this.updatedAt,
@@ -890,13 +932,17 @@ class UserCreateInput implements _i1.JsonSerializable {
   factory UserCreateInput.fromJson(Map<String, dynamic> json) =>
       _$UserCreateInputFromJson(json);
 
-  final String? username;
+  final String? fname;
+
+  final String? lname;
 
   final String email;
 
   final String? phone;
 
   final String? password;
+
+  final String? profile;
 
   final String? role;
 
@@ -914,10 +960,12 @@ class UserCreateInput implements _i1.JsonSerializable {
 class UserUncheckedCreateInput implements _i1.JsonSerializable {
   const UserUncheckedCreateInput({
     this.id,
-    this.username,
+    this.fname,
+    this.lname,
     required this.email,
     this.phone,
     this.password,
+    this.profile,
     this.role,
     this.createdAt,
     this.updatedAt,
@@ -928,13 +976,17 @@ class UserUncheckedCreateInput implements _i1.JsonSerializable {
 
   final int? id;
 
-  final String? username;
+  final String? fname;
+
+  final String? lname;
 
   final String email;
 
   final String? phone;
 
   final String? password;
+
+  final String? profile;
 
   final String? role;
 
@@ -951,10 +1003,12 @@ class UserUncheckedCreateInput implements _i1.JsonSerializable {
 @_i1.jsonSerializable
 class UserUpdateInput implements _i1.JsonSerializable {
   const UserUpdateInput({
-    this.username,
+    this.fname,
+    this.lname,
     this.email,
     this.phone,
     this.password,
+    this.profile,
     this.role,
     this.createdAt,
     this.updatedAt,
@@ -963,13 +1017,17 @@ class UserUpdateInput implements _i1.JsonSerializable {
   factory UserUpdateInput.fromJson(Map<String, dynamic> json) =>
       _$UserUpdateInputFromJson(json);
 
-  final NullableStringFieldUpdateOperationsInput? username;
+  final NullableStringFieldUpdateOperationsInput? fname;
+
+  final NullableStringFieldUpdateOperationsInput? lname;
 
   final StringFieldUpdateOperationsInput? email;
 
   final NullableStringFieldUpdateOperationsInput? phone;
 
   final NullableStringFieldUpdateOperationsInput? password;
+
+  final NullableStringFieldUpdateOperationsInput? profile;
 
   final NullableStringFieldUpdateOperationsInput? role;
 
@@ -987,10 +1045,12 @@ class UserUpdateInput implements _i1.JsonSerializable {
 class UserUncheckedUpdateInput implements _i1.JsonSerializable {
   const UserUncheckedUpdateInput({
     this.id,
-    this.username,
+    this.fname,
+    this.lname,
     this.email,
     this.phone,
     this.password,
+    this.profile,
     this.role,
     this.createdAt,
     this.updatedAt,
@@ -1001,13 +1061,17 @@ class UserUncheckedUpdateInput implements _i1.JsonSerializable {
 
   final IntFieldUpdateOperationsInput? id;
 
-  final NullableStringFieldUpdateOperationsInput? username;
+  final NullableStringFieldUpdateOperationsInput? fname;
+
+  final NullableStringFieldUpdateOperationsInput? lname;
 
   final StringFieldUpdateOperationsInput? email;
 
   final NullableStringFieldUpdateOperationsInput? phone;
 
   final NullableStringFieldUpdateOperationsInput? password;
+
+  final NullableStringFieldUpdateOperationsInput? profile;
 
   final NullableStringFieldUpdateOperationsInput? role;
 
@@ -1025,10 +1089,12 @@ class UserUncheckedUpdateInput implements _i1.JsonSerializable {
 class UserCreateManyInput implements _i1.JsonSerializable {
   const UserCreateManyInput({
     this.id,
-    this.username,
+    this.fname,
+    this.lname,
     required this.email,
     this.phone,
     this.password,
+    this.profile,
     this.role,
     this.createdAt,
     this.updatedAt,
@@ -1039,13 +1105,17 @@ class UserCreateManyInput implements _i1.JsonSerializable {
 
   final int? id;
 
-  final String? username;
+  final String? fname;
+
+  final String? lname;
 
   final String email;
 
   final String? phone;
 
   final String? password;
+
+  final String? profile;
 
   final String? role;
 
@@ -1062,10 +1132,12 @@ class UserCreateManyInput implements _i1.JsonSerializable {
 @_i1.jsonSerializable
 class UserUpdateManyMutationInput implements _i1.JsonSerializable {
   const UserUpdateManyMutationInput({
-    this.username,
+    this.fname,
+    this.lname,
     this.email,
     this.phone,
     this.password,
+    this.profile,
     this.role,
     this.createdAt,
     this.updatedAt,
@@ -1074,13 +1146,17 @@ class UserUpdateManyMutationInput implements _i1.JsonSerializable {
   factory UserUpdateManyMutationInput.fromJson(Map<String, dynamic> json) =>
       _$UserUpdateManyMutationInputFromJson(json);
 
-  final NullableStringFieldUpdateOperationsInput? username;
+  final NullableStringFieldUpdateOperationsInput? fname;
+
+  final NullableStringFieldUpdateOperationsInput? lname;
 
   final StringFieldUpdateOperationsInput? email;
 
   final NullableStringFieldUpdateOperationsInput? phone;
 
   final NullableStringFieldUpdateOperationsInput? password;
+
+  final NullableStringFieldUpdateOperationsInput? profile;
 
   final NullableStringFieldUpdateOperationsInput? role;
 
@@ -1098,10 +1174,12 @@ class UserUpdateManyMutationInput implements _i1.JsonSerializable {
 class UserUncheckedUpdateManyInput implements _i1.JsonSerializable {
   const UserUncheckedUpdateManyInput({
     this.id,
-    this.username,
+    this.fname,
+    this.lname,
     this.email,
     this.phone,
     this.password,
+    this.profile,
     this.role,
     this.createdAt,
     this.updatedAt,
@@ -1112,13 +1190,17 @@ class UserUncheckedUpdateManyInput implements _i1.JsonSerializable {
 
   final IntFieldUpdateOperationsInput? id;
 
-  final NullableStringFieldUpdateOperationsInput? username;
+  final NullableStringFieldUpdateOperationsInput? fname;
+
+  final NullableStringFieldUpdateOperationsInput? lname;
 
   final StringFieldUpdateOperationsInput? email;
 
   final NullableStringFieldUpdateOperationsInput? phone;
 
   final NullableStringFieldUpdateOperationsInput? password;
+
+  final NullableStringFieldUpdateOperationsInput? profile;
 
   final NullableStringFieldUpdateOperationsInput? role;
 
@@ -1395,6 +1477,7 @@ class TblPhotoUncheckedUpdateManyInput implements _i1.JsonSerializable {
 @_i1.jsonSerializable
 class TblalbumsCreateInput implements _i1.JsonSerializable {
   const TblalbumsCreateInput({
+    required this.idfolder,
     this.userid,
     this.title,
     this.createdAt,
@@ -1403,6 +1486,8 @@ class TblalbumsCreateInput implements _i1.JsonSerializable {
 
   factory TblalbumsCreateInput.fromJson(Map<String, dynamic> json) =>
       _$TblalbumsCreateInputFromJson(json);
+
+  final String idfolder;
 
   final int? userid;
 
@@ -1422,6 +1507,7 @@ class TblalbumsCreateInput implements _i1.JsonSerializable {
 class TblalbumsUncheckedCreateInput implements _i1.JsonSerializable {
   const TblalbumsUncheckedCreateInput({
     this.id,
+    required this.idfolder,
     this.userid,
     this.title,
     this.createdAt,
@@ -1432,6 +1518,8 @@ class TblalbumsUncheckedCreateInput implements _i1.JsonSerializable {
       _$TblalbumsUncheckedCreateInputFromJson(json);
 
   final int? id;
+
+  final String idfolder;
 
   final int? userid;
 
@@ -1450,6 +1538,7 @@ class TblalbumsUncheckedCreateInput implements _i1.JsonSerializable {
 @_i1.jsonSerializable
 class TblalbumsUpdateInput implements _i1.JsonSerializable {
   const TblalbumsUpdateInput({
+    this.idfolder,
     this.userid,
     this.title,
     this.createdAt,
@@ -1458,6 +1547,8 @@ class TblalbumsUpdateInput implements _i1.JsonSerializable {
 
   factory TblalbumsUpdateInput.fromJson(Map<String, dynamic> json) =>
       _$TblalbumsUpdateInputFromJson(json);
+
+  final StringFieldUpdateOperationsInput? idfolder;
 
   final NullableIntFieldUpdateOperationsInput? userid;
 
@@ -1477,6 +1568,7 @@ class TblalbumsUpdateInput implements _i1.JsonSerializable {
 class TblalbumsUncheckedUpdateInput implements _i1.JsonSerializable {
   const TblalbumsUncheckedUpdateInput({
     this.id,
+    this.idfolder,
     this.userid,
     this.title,
     this.createdAt,
@@ -1487,6 +1579,8 @@ class TblalbumsUncheckedUpdateInput implements _i1.JsonSerializable {
       _$TblalbumsUncheckedUpdateInputFromJson(json);
 
   final IntFieldUpdateOperationsInput? id;
+
+  final StringFieldUpdateOperationsInput? idfolder;
 
   final NullableIntFieldUpdateOperationsInput? userid;
 
@@ -1506,6 +1600,7 @@ class TblalbumsUncheckedUpdateInput implements _i1.JsonSerializable {
 class TblalbumsCreateManyInput implements _i1.JsonSerializable {
   const TblalbumsCreateManyInput({
     this.id,
+    required this.idfolder,
     this.userid,
     this.title,
     this.createdAt,
@@ -1516,6 +1611,8 @@ class TblalbumsCreateManyInput implements _i1.JsonSerializable {
       _$TblalbumsCreateManyInputFromJson(json);
 
   final int? id;
+
+  final String idfolder;
 
   final int? userid;
 
@@ -1534,6 +1631,7 @@ class TblalbumsCreateManyInput implements _i1.JsonSerializable {
 @_i1.jsonSerializable
 class TblalbumsUpdateManyMutationInput implements _i1.JsonSerializable {
   const TblalbumsUpdateManyMutationInput({
+    this.idfolder,
     this.userid,
     this.title,
     this.createdAt,
@@ -1543,6 +1641,8 @@ class TblalbumsUpdateManyMutationInput implements _i1.JsonSerializable {
   factory TblalbumsUpdateManyMutationInput.fromJson(
           Map<String, dynamic> json) =>
       _$TblalbumsUpdateManyMutationInputFromJson(json);
+
+  final StringFieldUpdateOperationsInput? idfolder;
 
   final NullableIntFieldUpdateOperationsInput? userid;
 
@@ -1563,6 +1663,7 @@ class TblalbumsUpdateManyMutationInput implements _i1.JsonSerializable {
 class TblalbumsUncheckedUpdateManyInput implements _i1.JsonSerializable {
   const TblalbumsUncheckedUpdateManyInput({
     this.id,
+    this.idfolder,
     this.userid,
     this.title,
     this.createdAt,
@@ -1574,6 +1675,8 @@ class TblalbumsUncheckedUpdateManyInput implements _i1.JsonSerializable {
       _$TblalbumsUncheckedUpdateManyInputFromJson(json);
 
   final IntFieldUpdateOperationsInput? id;
+
+  final StringFieldUpdateOperationsInput? idfolder;
 
   final NullableIntFieldUpdateOperationsInput? userid;
 
@@ -1997,10 +2100,12 @@ class SortOrderInput implements _i1.JsonSerializable {
 class UserCountOrderByAggregateInput implements _i1.JsonSerializable {
   const UserCountOrderByAggregateInput({
     this.id,
-    this.username,
+    this.fname,
+    this.lname,
     this.email,
     this.phone,
     this.password,
+    this.profile,
     this.role,
     this.createdAt,
     this.updatedAt,
@@ -2011,13 +2116,17 @@ class UserCountOrderByAggregateInput implements _i1.JsonSerializable {
 
   final SortOrder? id;
 
-  final SortOrder? username;
+  final SortOrder? fname;
+
+  final SortOrder? lname;
 
   final SortOrder? email;
 
   final SortOrder? phone;
 
   final SortOrder? password;
+
+  final SortOrder? profile;
 
   final SortOrder? role;
 
@@ -2048,10 +2157,12 @@ class UserAvgOrderByAggregateInput implements _i1.JsonSerializable {
 class UserMaxOrderByAggregateInput implements _i1.JsonSerializable {
   const UserMaxOrderByAggregateInput({
     this.id,
-    this.username,
+    this.fname,
+    this.lname,
     this.email,
     this.phone,
     this.password,
+    this.profile,
     this.role,
     this.createdAt,
     this.updatedAt,
@@ -2062,13 +2173,17 @@ class UserMaxOrderByAggregateInput implements _i1.JsonSerializable {
 
   final SortOrder? id;
 
-  final SortOrder? username;
+  final SortOrder? fname;
+
+  final SortOrder? lname;
 
   final SortOrder? email;
 
   final SortOrder? phone;
 
   final SortOrder? password;
+
+  final SortOrder? profile;
 
   final SortOrder? role;
 
@@ -2086,10 +2201,12 @@ class UserMaxOrderByAggregateInput implements _i1.JsonSerializable {
 class UserMinOrderByAggregateInput implements _i1.JsonSerializable {
   const UserMinOrderByAggregateInput({
     this.id,
-    this.username,
+    this.fname,
+    this.lname,
     this.email,
     this.phone,
     this.password,
+    this.profile,
     this.role,
     this.createdAt,
     this.updatedAt,
@@ -2100,13 +2217,17 @@ class UserMinOrderByAggregateInput implements _i1.JsonSerializable {
 
   final SortOrder? id;
 
-  final SortOrder? username;
+  final SortOrder? fname;
+
+  final SortOrder? lname;
 
   final SortOrder? email;
 
   final SortOrder? phone;
 
   final SortOrder? password;
+
+  final SortOrder? profile;
 
   final SortOrder? role;
 
@@ -2618,6 +2739,7 @@ class IntNullableWithAggregatesFilter implements _i1.JsonSerializable {
 class TblalbumsCountOrderByAggregateInput implements _i1.JsonSerializable {
   const TblalbumsCountOrderByAggregateInput({
     this.id,
+    this.idfolder,
     this.userid,
     this.title,
     this.createdAt,
@@ -2629,6 +2751,8 @@ class TblalbumsCountOrderByAggregateInput implements _i1.JsonSerializable {
       _$TblalbumsCountOrderByAggregateInputFromJson(json);
 
   final SortOrder? id;
+
+  final SortOrder? idfolder;
 
   final SortOrder? userid;
 
@@ -2669,6 +2793,7 @@ class TblalbumsAvgOrderByAggregateInput implements _i1.JsonSerializable {
 class TblalbumsMaxOrderByAggregateInput implements _i1.JsonSerializable {
   const TblalbumsMaxOrderByAggregateInput({
     this.id,
+    this.idfolder,
     this.userid,
     this.title,
     this.createdAt,
@@ -2680,6 +2805,8 @@ class TblalbumsMaxOrderByAggregateInput implements _i1.JsonSerializable {
       _$TblalbumsMaxOrderByAggregateInputFromJson(json);
 
   final SortOrder? id;
+
+  final SortOrder? idfolder;
 
   final SortOrder? userid;
 
@@ -2700,6 +2827,7 @@ class TblalbumsMaxOrderByAggregateInput implements _i1.JsonSerializable {
 class TblalbumsMinOrderByAggregateInput implements _i1.JsonSerializable {
   const TblalbumsMinOrderByAggregateInput({
     this.id,
+    this.idfolder,
     this.userid,
     this.title,
     this.createdAt,
@@ -2711,6 +2839,8 @@ class TblalbumsMinOrderByAggregateInput implements _i1.JsonSerializable {
       _$TblalbumsMinOrderByAggregateInputFromJson(json);
 
   final SortOrder? id;
+
+  final SortOrder? idfolder;
 
   final SortOrder? userid;
 
@@ -3566,10 +3696,12 @@ class NestedFloatNullableFilter implements _i1.JsonSerializable {
 class User implements _i1.JsonSerializable {
   const User({
     required this.id,
-    this.username,
+    this.fname,
+    this.lname,
     required this.email,
     this.phone,
     this.password,
+    this.profile,
     this.role,
     this.createdAt,
     this.updatedAt,
@@ -3579,13 +3711,17 @@ class User implements _i1.JsonSerializable {
 
   final int id;
 
-  final String? username;
+  final String? fname;
+
+  final String? lname;
 
   final String email;
 
   final String? phone;
 
   final String? password;
+
+  final String? profile;
 
   final String? role;
 
@@ -3641,6 +3777,7 @@ class TblPhoto implements _i1.JsonSerializable {
 class Tblalbums implements _i1.JsonSerializable {
   const Tblalbums({
     required this.id,
+    required this.idfolder,
     this.userid,
     this.title,
     this.createdAt,
@@ -3651,6 +3788,8 @@ class Tblalbums implements _i1.JsonSerializable {
       _$TblalbumsFromJson(json);
 
   final int id;
+
+  final String idfolder;
 
   final int? userid;
 
@@ -3737,12 +3876,12 @@ extension UserModelDelegateExtension on _i1.ModelDelegate<User> {
     final query = _i1.PrismaFluent.queryBuilder(
       query: (fields) => $query([
         _i2.GraphQLField(
-          r'findUniqueUser',
+          r'findUniqueuser',
           fields: fields,
           args: args,
         )
       ]),
-      key: r'findUniqueUser',
+      key: r'findUniqueuser',
     );
     final future = query(UserScalarFieldEnum.values.toGraphQLFields()).then(
         (json) =>
@@ -3763,18 +3902,18 @@ extension UserModelDelegateExtension on _i1.ModelDelegate<User> {
     final query = _i1.PrismaFluent.queryBuilder(
       query: (fields) => $query([
         _i2.GraphQLField(
-          r'findUniqueUserOrThrow',
+          r'findUniqueuserOrThrow',
           fields: fields,
           args: args,
         )
       ]),
-      key: r'findUniqueUserOrThrow',
+      key: r'findUniqueuserOrThrow',
     );
     final future = query(UserScalarFieldEnum.values.toGraphQLFields()).then(
         (json) => json is Map
             ? User.fromJson(json.cast<String, dynamic>())
             : throw Exception(
-                'Not found OutputTypeRefType.string(value: User)'));
+                'Not found OutputTypeRefType.string(value: user)'));
     return UserFluent<User>(
       future,
       query,
@@ -3818,12 +3957,12 @@ extension UserModelDelegateExtension on _i1.ModelDelegate<User> {
     final query = _i1.PrismaFluent.queryBuilder(
       query: (fields) => $query([
         _i2.GraphQLField(
-          r'findFirstUser',
+          r'findFirstuser',
           fields: fields,
           args: args,
         )
       ]),
-      key: r'findFirstUser',
+      key: r'findFirstuser',
     );
     final future = query(UserScalarFieldEnum.values.toGraphQLFields()).then(
         (json) =>
@@ -3871,18 +4010,18 @@ extension UserModelDelegateExtension on _i1.ModelDelegate<User> {
     final query = _i1.PrismaFluent.queryBuilder(
       query: (fields) => $query([
         _i2.GraphQLField(
-          r'findFirstUserOrThrow',
+          r'findFirstuserOrThrow',
           fields: fields,
           args: args,
         )
       ]),
-      key: r'findFirstUserOrThrow',
+      key: r'findFirstuserOrThrow',
     );
     final future = query(UserScalarFieldEnum.values.toGraphQLFields()).then(
         (json) => json is Map
             ? User.fromJson(json.cast<String, dynamic>())
             : throw Exception(
-                'Not found OutputTypeRefType.string(value: User)'));
+                'Not found OutputTypeRefType.string(value: user)'));
     return UserFluent<User>(
       future,
       query,
@@ -3926,16 +4065,16 @@ extension UserModelDelegateExtension on _i1.ModelDelegate<User> {
     final query = _i1.PrismaFluent.queryBuilder(
       query: (fields) => $query([
         _i2.GraphQLField(
-          r'findManyUser',
+          r'findManyuser',
           fields: fields,
           args: args,
         )
       ]),
-      key: r'findManyUser',
+      key: r'findManyuser',
     );
     final fields = UserScalarFieldEnum.values.toGraphQLFields();
-    compiler(Iterable<Map> findManyUser) => findManyUser
-        .map((Map findManyUser) => User.fromJson(findManyUser.cast()));
+    compiler(Iterable<Map> findManyuser) => findManyuser
+        .map((Map findManyuser) => User.fromJson(findManyuser.cast()));
     return query(fields).then((json) => json is Iterable
         ? compiler(json.cast())
         : throw Exception('Unable to parse response'));
@@ -3951,18 +4090,18 @@ extension UserModelDelegateExtension on _i1.ModelDelegate<User> {
     final query = _i1.PrismaFluent.queryBuilder(
       query: (fields) => $mutation([
         _i2.GraphQLField(
-          r'createOneUser',
+          r'createOneuser',
           fields: fields,
           args: args,
         )
       ]),
-      key: r'createOneUser',
+      key: r'createOneuser',
     );
     final future = query(UserScalarFieldEnum.values.toGraphQLFields()).then(
         (json) => json is Map
             ? User.fromJson(json.cast<String, dynamic>())
             : throw Exception(
-                'Not found OutputTypeRefType.string(value: User)'));
+                'Not found OutputTypeRefType.string(value: user)'));
     return UserFluent<User>(
       future,
       query,
@@ -3986,16 +4125,16 @@ extension UserModelDelegateExtension on _i1.ModelDelegate<User> {
     final query = _i1.PrismaFluent.queryBuilder(
       query: (fields) => $mutation([
         _i2.GraphQLField(
-          r'createManyUser',
+          r'createManyuser',
           fields: fields,
           args: args,
         )
       ]),
-      key: r'createManyUser',
+      key: r'createManyuser',
     );
     final fields = const ['count'].map((e) => _i2.GraphQLField(e));
-    compiler(Map createManyUser) =>
-        AffectedRowsOutput.fromJson(createManyUser.cast());
+    compiler(Map createManyuser) =>
+        AffectedRowsOutput.fromJson(createManyuser.cast());
     return query(fields).then((json) => json is Map
         ? compiler(json)
         : throw Exception('Unable to parse response'));
@@ -4018,12 +4157,12 @@ extension UserModelDelegateExtension on _i1.ModelDelegate<User> {
     final query = _i1.PrismaFluent.queryBuilder(
       query: (fields) => $mutation([
         _i2.GraphQLField(
-          r'updateOneUser',
+          r'updateOneuser',
           fields: fields,
           args: args,
         )
       ]),
-      key: r'updateOneUser',
+      key: r'updateOneuser',
     );
     final future = query(UserScalarFieldEnum.values.toGraphQLFields()).then(
         (json) =>
@@ -4051,16 +4190,16 @@ extension UserModelDelegateExtension on _i1.ModelDelegate<User> {
     final query = _i1.PrismaFluent.queryBuilder(
       query: (fields) => $mutation([
         _i2.GraphQLField(
-          r'updateManyUser',
+          r'updateManyuser',
           fields: fields,
           args: args,
         )
       ]),
-      key: r'updateManyUser',
+      key: r'updateManyuser',
     );
     final fields = const ['count'].map((e) => _i2.GraphQLField(e));
-    compiler(Map updateManyUser) =>
-        AffectedRowsOutput.fromJson(updateManyUser.cast());
+    compiler(Map updateManyuser) =>
+        AffectedRowsOutput.fromJson(updateManyuser.cast());
     return query(fields).then((json) => json is Map
         ? compiler(json)
         : throw Exception('Unable to parse response'));
@@ -4088,18 +4227,18 @@ extension UserModelDelegateExtension on _i1.ModelDelegate<User> {
     final query = _i1.PrismaFluent.queryBuilder(
       query: (fields) => $mutation([
         _i2.GraphQLField(
-          r'upsertOneUser',
+          r'upsertOneuser',
           fields: fields,
           args: args,
         )
       ]),
-      key: r'upsertOneUser',
+      key: r'upsertOneuser',
     );
     final future = query(UserScalarFieldEnum.values.toGraphQLFields()).then(
         (json) => json is Map
             ? User.fromJson(json.cast<String, dynamic>())
             : throw Exception(
-                'Not found OutputTypeRefType.string(value: User)'));
+                'Not found OutputTypeRefType.string(value: user)'));
     return UserFluent<User>(
       future,
       query,
@@ -4116,12 +4255,12 @@ extension UserModelDelegateExtension on _i1.ModelDelegate<User> {
     final query = _i1.PrismaFluent.queryBuilder(
       query: (fields) => $mutation([
         _i2.GraphQLField(
-          r'deleteOneUser',
+          r'deleteOneuser',
           fields: fields,
           args: args,
         )
       ]),
-      key: r'deleteOneUser',
+      key: r'deleteOneuser',
     );
     final future = query(UserScalarFieldEnum.values.toGraphQLFields()).then(
         (json) =>
@@ -4142,16 +4281,16 @@ extension UserModelDelegateExtension on _i1.ModelDelegate<User> {
     final query = _i1.PrismaFluent.queryBuilder(
       query: (fields) => $mutation([
         _i2.GraphQLField(
-          r'deleteManyUser',
+          r'deleteManyuser',
           fields: fields,
           args: args,
         )
       ]),
-      key: r'deleteManyUser',
+      key: r'deleteManyuser',
     );
     final fields = const ['count'].map((e) => _i2.GraphQLField(e));
-    compiler(Map deleteManyUser) =>
-        AffectedRowsOutput.fromJson(deleteManyUser.cast());
+    compiler(Map deleteManyuser) =>
+        AffectedRowsOutput.fromJson(deleteManyuser.cast());
     return query(fields).then((json) => json is Map
         ? compiler(json)
         : throw Exception('Unable to parse response'));
@@ -4189,12 +4328,12 @@ extension UserModelDelegateExtension on _i1.ModelDelegate<User> {
     final query = _i1.PrismaFluent.queryBuilder(
       query: (fields) => $query([
         _i2.GraphQLField(
-          r'aggregateUser',
+          r'aggregateuser',
           fields: fields,
           args: args,
         )
       ]),
-      key: r'aggregateUser',
+      key: r'aggregateuser',
     );
     return AggregateUser(query);
   }
@@ -4236,16 +4375,16 @@ extension UserModelDelegateExtension on _i1.ModelDelegate<User> {
     final query = _i1.PrismaFluent.queryBuilder(
       query: (fields) => $query([
         _i2.GraphQLField(
-          r'groupByUser',
+          r'groupByuser',
           fields: fields,
           args: args,
         )
       ]),
-      key: r'groupByUser',
+      key: r'groupByuser',
     );
     final fields = by.map((e) => _i2.GraphQLField(e.originalName ?? e.name));
-    compiler(Iterable<Map> groupByUser) => groupByUser.map((Map groupByUser) =>
-        UserGroupByOutputType.fromJson(groupByUser.cast()));
+    compiler(Iterable<Map> groupByuser) => groupByuser.map((Map groupByuser) =>
+        UserGroupByOutputType.fromJson(groupByuser.cast()));
     return query(fields).then((json) => json is Iterable
         ? compiler(json.cast())
         : throw Exception('Unable to parse response'));
@@ -5005,7 +5144,7 @@ extension TblalbumsModelDelegateExtension on _i1.ModelDelegate<Tblalbums> {
         : throw Exception('Unable to parse response'));
   }
 
-  TblalbumsFluent<Tblalbums> create({TblalbumsCreateInput? data}) {
+  TblalbumsFluent<Tblalbums> create({required TblalbumsCreateInput data}) {
     final args = [
       _i2.GraphQLArg(
         r'data',
@@ -5859,10 +5998,12 @@ extension TblhistoryModelDelegateExtension on _i1.ModelDelegate<Tblhistory> {
 class UserGroupByOutputType implements _i1.JsonSerializable {
   const UserGroupByOutputType({
     this.id,
-    this.username,
+    this.fname,
+    this.lname,
     this.email,
     this.phone,
     this.password,
+    this.profile,
     this.role,
     this.createdAt,
     this.updatedAt,
@@ -5873,13 +6014,17 @@ class UserGroupByOutputType implements _i1.JsonSerializable {
 
   final int? id;
 
-  final String? username;
+  final String? fname;
+
+  final String? lname;
 
   final String? email;
 
   final String? phone;
 
   final String? password;
+
+  final String? profile;
 
   final String? role;
 
@@ -5935,6 +6080,7 @@ class TblPhotoGroupByOutputType implements _i1.JsonSerializable {
 class TblalbumsGroupByOutputType implements _i1.JsonSerializable {
   const TblalbumsGroupByOutputType({
     this.id,
+    this.idfolder,
     this.userid,
     this.title,
     this.createdAt,
@@ -5945,6 +6091,8 @@ class TblalbumsGroupByOutputType implements _i1.JsonSerializable {
       _$TblalbumsGroupByOutputTypeFromJson(json);
 
   final int? id;
+
+  final String? idfolder;
 
   final int? userid;
 
@@ -6307,15 +6455,28 @@ class UserCountAggregateOutputType {
     return query(const []).then((value) => (value as int));
   }
 
-  Future<int> username() {
+  Future<int> fname() {
     final query = _i1.PrismaFluent.queryBuilder(
       query: (fields) => $query([
         _i2.GraphQLField(
-          r'username',
+          r'fname',
           fields: fields,
         )
       ]),
-      key: r'username',
+      key: r'fname',
+    );
+    return query(const []).then((value) => (value as int));
+  }
+
+  Future<int> lname() {
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $query([
+        _i2.GraphQLField(
+          r'lname',
+          fields: fields,
+        )
+      ]),
+      key: r'lname',
     );
     return query(const []).then((value) => (value as int));
   }
@@ -6355,6 +6516,19 @@ class UserCountAggregateOutputType {
         )
       ]),
       key: r'password',
+    );
+    return query(const []).then((value) => (value as int));
+  }
+
+  Future<int> profile() {
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $query([
+        _i2.GraphQLField(
+          r'profile',
+          fields: fields,
+        )
+      ]),
+      key: r'profile',
     );
     return query(const []).then((value) => (value as int));
   }
@@ -6468,15 +6642,28 @@ class UserMinAggregateOutputType {
     return query(const []).then((value) => (value as int?));
   }
 
-  Future<String?> username() {
+  Future<String?> fname() {
     final query = _i1.PrismaFluent.queryBuilder(
       query: (fields) => $query([
         _i2.GraphQLField(
-          r'username',
+          r'fname',
           fields: fields,
         )
       ]),
-      key: r'username',
+      key: r'fname',
+    );
+    return query(const []).then((value) => (value as String?));
+  }
+
+  Future<String?> lname() {
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $query([
+        _i2.GraphQLField(
+          r'lname',
+          fields: fields,
+        )
+      ]),
+      key: r'lname',
     );
     return query(const []).then((value) => (value as String?));
   }
@@ -6516,6 +6703,19 @@ class UserMinAggregateOutputType {
         )
       ]),
       key: r'password',
+    );
+    return query(const []).then((value) => (value as String?));
+  }
+
+  Future<String?> profile() {
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $query([
+        _i2.GraphQLField(
+          r'profile',
+          fields: fields,
+        )
+      ]),
+      key: r'profile',
     );
     return query(const []).then((value) => (value as String?));
   }
@@ -6580,15 +6780,28 @@ class UserMaxAggregateOutputType {
     return query(const []).then((value) => (value as int?));
   }
 
-  Future<String?> username() {
+  Future<String?> fname() {
     final query = _i1.PrismaFluent.queryBuilder(
       query: (fields) => $query([
         _i2.GraphQLField(
-          r'username',
+          r'fname',
           fields: fields,
         )
       ]),
-      key: r'username',
+      key: r'fname',
+    );
+    return query(const []).then((value) => (value as String?));
+  }
+
+  Future<String?> lname() {
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $query([
+        _i2.GraphQLField(
+          r'lname',
+          fields: fields,
+        )
+      ]),
+      key: r'lname',
     );
     return query(const []).then((value) => (value as String?));
   }
@@ -6628,6 +6841,19 @@ class UserMaxAggregateOutputType {
         )
       ]),
       key: r'password',
+    );
+    return query(const []).then((value) => (value as String?));
+  }
+
+  Future<String?> profile() {
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $query([
+        _i2.GraphQLField(
+          r'profile',
+          fields: fields,
+        )
+      ]),
+      key: r'profile',
     );
     return query(const []).then((value) => (value as String?));
   }
@@ -7105,6 +7331,19 @@ class TblalbumsCountAggregateOutputType {
     return query(const []).then((value) => (value as int));
   }
 
+  Future<int> idfolder() {
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $query([
+        _i2.GraphQLField(
+          r'idfolder',
+          fields: fields,
+        )
+      ]),
+      key: r'idfolder',
+    );
+    return query(const []).then((value) => (value as int));
+  }
+
   Future<int> userid() {
     final query = _i1.PrismaFluent.queryBuilder(
       query: (fields) => $query([
@@ -7253,6 +7492,19 @@ class TblalbumsMinAggregateOutputType {
     return query(const []).then((value) => (value as int?));
   }
 
+  Future<String?> idfolder() {
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $query([
+        _i2.GraphQLField(
+          r'idfolder',
+          fields: fields,
+        )
+      ]),
+      key: r'idfolder',
+    );
+    return query(const []).then((value) => (value as String?));
+  }
+
   Future<int?> userid() {
     final query = _i1.PrismaFluent.queryBuilder(
       query: (fields) => $query([
@@ -7324,6 +7576,19 @@ class TblalbumsMaxAggregateOutputType {
       key: r'id',
     );
     return query(const []).then((value) => (value as int?));
+  }
+
+  Future<String?> idfolder() {
+    final query = _i1.PrismaFluent.queryBuilder(
+      query: (fields) => $query([
+        _i2.GraphQLField(
+          r'idfolder',
+          fields: fields,
+        )
+      ]),
+      key: r'idfolder',
+    );
+    return query(const []).then((value) => (value as String?));
   }
 
   Future<int?> userid() {
@@ -7782,7 +8047,7 @@ class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
     final engine = _i5.BinaryEngine(
       logger: logger,
       schema:
-          r'Ly8gVGhpcyBpcyB5b3VyIFByaXNtYSBzY2hlbWEgZmlsZSwKLy8gbGVhcm4gbW9yZSBhYm91dCBpdCBpbiB0aGUgZG9jczogaHR0cHM6Ly9wcmlzLmx5L2QvcHJpc21hLXNjaGVtYQoKZ2VuZXJhdG9yIGNsaWVudCB7CiAgcHJvdmlkZXIgPSAiZGFydCBydW4gb3JtIgp9CgpkYXRhc291cmNlIGRiIHsKICBwcm92aWRlciA9ICJteXNxbCIKICB1cmwgICAgICA9IGVudigiREFUQUJBU0VfVVJMIikKfQoKbW9kZWwgVXNlciB7CiAgaWQgSW50IEBpZCBAZGVmYXVsdChhdXRvaW5jcmVtZW50KCkpCiAgdXNlcm5hbWUgIFN0cmluZz8KICBlbWFpbCBTdHJpbmcgQHVuaXF1ZQogIHBob25lIFN0cmluZz8gQHVuaXF1ZQogIHBhc3N3b3JkIFN0cmluZz8KICByb2xlIFN0cmluZz8KICBjcmVhdGVkX2F0IERhdGVUaW1lPwogIHVwZGF0ZWRfYXQgRGF0ZVRpbWU/Cn0KCm1vZGVsIHRibFBob3RvewogIGlkIEludCBAaWQgQGRlZmF1bHQoYXV0b2luY3JlbWVudCgpKQogIGFsYnVtc2lkIEludD8KICB0aXRsZSBTdHJpbmc/CiAgZGF0ZSBEYXRlVGltZT8KICB1cmwgU3RyaW5nPwogIHBhdGggU3RyaW5nPwogIGNyZWF0ZWRfYXQgRGF0ZVRpbWU/CiAgdXBkYXRlZF9hdCBEYXRlVGltZT8KfQoKbW9kZWwgdGJsYWxidW1zewogIGlkIEludCBAaWQgQGRlZmF1bHQoYXV0b2luY3JlbWVudCgpKQogIHVzZXJpZCBJbnQ/CiAgdGl0bGUgU3RyaW5nPwogIGNyZWF0ZWRfYXQgRGF0ZVRpbWU/CiAgdXBkYXRlZF9hdCBEYXRlVGltZT8KfQoKbW9kZWwgdGJsaGlzdG9yeXsKICBpZCBJbnQgQGlkIEBkZWZhdWx0KGF1dG9pbmNyZW1lbnQoKSkKICB1c2VyaWQgSW50PwogIHBob3RvaWQgSW50PwogIGRhdGUgRGF0ZVRpbWU/CiAgY3JlYXRlZF9hdCBEYXRlVGltZT8KICB1cGRhdGVkX2F0IERhdGVUaW1lPwp9CgoK',
+          r'Ly8gVGhpcyBpcyB5b3VyIFByaXNtYSBzY2hlbWEgZmlsZSwKLy8gbGVhcm4gbW9yZSBhYm91dCBpdCBpbiB0aGUgZG9jczogaHR0cHM6Ly9wcmlzLmx5L2QvcHJpc21hLXNjaGVtYQoKZ2VuZXJhdG9yIGNsaWVudCB7CiAgcHJvdmlkZXIgPSAiZGFydCBydW4gb3JtIgp9CgpkYXRhc291cmNlIGRiIHsKICBwcm92aWRlciA9ICJteXNxbCIKICB1cmwgICAgICA9IGVudigiREFUQUJBU0VfVVJMIikKfQoKbW9kZWwgdXNlciB7CiAgaWQgSW50IEBpZCBAZGVmYXVsdChhdXRvaW5jcmVtZW50KCkpCiAgZm5hbWUgU3RyaW5nPwogIGxuYW1lIFN0cmluZz8KICBlbWFpbCBTdHJpbmcgQHVuaXF1ZQogIHBob25lIFN0cmluZz8gQHVuaXF1ZQogIHBhc3N3b3JkIFN0cmluZz8KICBwcm9maWxlIFN0cmluZz8KICByb2xlIFN0cmluZz8KICBjcmVhdGVkX2F0IERhdGVUaW1lPwogIHVwZGF0ZWRfYXQgRGF0ZVRpbWU/Cn0KCm1vZGVsIHRibFBob3RvewogIGlkIEludCBAaWQgQGRlZmF1bHQoYXV0b2luY3JlbWVudCgpKQogIGFsYnVtc2lkIEludD8KICB0aXRsZSBTdHJpbmc/CiAgZGF0ZSBEYXRlVGltZT8KICB1cmwgU3RyaW5nPwogIHBhdGggU3RyaW5nPwogIGNyZWF0ZWRfYXQgRGF0ZVRpbWU/CiAgdXBkYXRlZF9hdCBEYXRlVGltZT8KfQoKbW9kZWwgdGJsYWxidW1zewogIGlkIEludCBAaWQgQGRlZmF1bHQoYXV0b2luY3JlbWVudCgpKQogIGlkZm9sZGVyIFN0cmluZwogIHVzZXJpZCBJbnQ/CiAgdGl0bGUgU3RyaW5nPwogIGNyZWF0ZWRfYXQgRGF0ZVRpbWU/CiAgdXBkYXRlZF9hdCBEYXRlVGltZT8KfQoKbW9kZWwgdGJsaGlzdG9yeXsKICBpZCBJbnQgQGlkIEBkZWZhdWx0KGF1dG9pbmNyZW1lbnQoKSkKICB1c2VyaWQgSW50PwogIHBob3RvaWQgSW50PwogIGRhdGUgRGF0ZVRpbWU/CiAgY3JlYXRlZF9hdCBEYXRlVGltZT8KICB1cGRhdGVkX2F0IERhdGVUaW1lPwp9CgoK',
       datasources: datasources?.toJson().cast() ?? const {},
       executable:
           r'D:\Dart server\photo_api\node_modules\prisma\query-engine-windows.exe',
@@ -7831,13 +8096,12 @@ class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
         transaction: _transaction,
       );
 
-  int? fetchToken(String token) {
-    try{
-      final jwt= JWT.verify(token, SecretKey("photoapi"));
+  int? fetchUserFromToken(String token) {
+    try {
+      final jwt = JWT.verify(token, SecretKey("photoapitest"));
       return jwt.payload as int;
-    }on JWTException catch (e){
+    } on JWTException catch (e) {
       return null;
     }
-
   }
 }
