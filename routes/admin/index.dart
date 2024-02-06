@@ -17,9 +17,7 @@ Future<Response> onRequest(RequestContext context) async {
 Future<Response> _getAdmin(RequestContext context) async {
   try {
     final prisma = context.read<PrismaClient>();
-    final getadmin = (await prisma.user.findMany(
-            where: UserWhereInput(role: StringNullableFilter(equals: 'admin'))))
-        .toList();
+    final getadmin = (await prisma.user.findMany()).toList();
     var admindata = [];
     for (var i = 0; i < getadmin.length; i++) {
       final userdatastrong = {

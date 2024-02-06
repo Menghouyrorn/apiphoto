@@ -17,8 +17,12 @@ Future<Response> onRequest(RequestContext context) {
   } else if (method == HttpMethod.delete) {
     return _deleteAlbums(context);
   } else {
-    return Future.value(Response.json(
-        body: {'message': 'Error'}, statusCode: HttpStatus.badGateway));
+    return Future.value(
+      Response.json(
+        body: {'message': 'Error'},
+        statusCode: HttpStatus.badGateway,
+      ),
+    );
   }
 }
 
@@ -49,6 +53,7 @@ Future<Response> _createAlbums(RequestContext context) async {
     final json = await context.request.json() as Map<String, dynamic>;
     final idfolder = json['idfolder'] as String;
     final title = json['title'] as String?;
+    int userid = json['userid'] as int;
     final created_at = DateTime.now();
     final updated_at = DateTime.now();
 
@@ -62,6 +67,7 @@ Future<Response> _createAlbums(RequestContext context) async {
       data: TblalbumsCreateInput(
         idfolder: idfolder,
         title: title,
+        userid: userid,
         createdAt: created_at,
         updatedAt: updated_at,
       ),
@@ -110,7 +116,7 @@ Future<Response> _updateAlbums(RequestContext context) async {
               NullableDateTimeFieldUpdateOperationsInput(set: updated_at),
         ),
         where: TblalbumsWhereInput(
-          id:IntFilter(equals: id),
+          id: IntFilter(equals: id),
         ),
       );
     }

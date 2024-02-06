@@ -27,10 +27,10 @@ Future<Response> _getStaff(RequestContext context) async {
       final userdatastrong = {
         'id': staff[i].id,
         'fname': staff[i].fname,
-        'lname':staff[i].lname,
+        'lname': staff[i].lname,
         'email': staff[i].email,
         'phone': staff[i].phone,
-        'profile':staff[i].profile,
+        'profile': staff[i].profile,
         'role': staff[i].role,
         'created_at': staff[i].createdAt.toString(),
         'updated_at': staff[i].updatedAt.toString(),
@@ -70,8 +70,7 @@ Future<Response> _createStaff(RequestContext context) async {
         fname == null ||
         password == null ||
         phone == null ||
-        lname == null
-        ) {
+        lname == null) {
       return Response.json(body: {
         'message': 'Plase input email username password phone',
       }, statusCode: HttpStatus.badRequest);
@@ -79,25 +78,24 @@ Future<Response> _createStaff(RequestContext context) async {
     final prisma = context.read<PrismaClient>();
     final staff = await prisma.user.create(
       data: UserCreateInput(
-        email: email,
-        createdAt: created_at,
-        password: _hashPassword(password),
-        phone: phone,
-        role: role,
-        updatedAt: updated_at,
-        fname: fname,
-        lname: lname,
-        profile: profile
-      ),
+          email: email,
+          createdAt: created_at,
+          password: _hashPassword(password),
+          phone: phone,
+          role: role,
+          updatedAt: updated_at,
+          fname: fname,
+          lname: lname,
+          profile: profile),
     );
 
     final staffdata = {
       'id': staff.id,
       'fname': staff.fname,
-      'lname':staff.lname,
+      'lname': staff.lname,
       'email': staff.email,
       'phone': staff.phone,
-      'profile':staff.profile,
+      'profile': staff.profile,
       'role': staff.role,
       'created_at': staff.createdAt.toString(),
       'updated_at': staff.updatedAt.toString()

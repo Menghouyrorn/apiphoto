@@ -27,7 +27,8 @@ UserWhereInput _$UserWhereInputFromJson(Map<String, dynamic> json) =>
               json['lname'] as Map<String, dynamic>),
       email: json['email'] == null
           ? null
-          : StringFilter.fromJson(json['email'] as Map<String, dynamic>),
+          : StringNullableFilter.fromJson(
+              json['email'] as Map<String, dynamic>),
       phone: json['phone'] == null
           ? null
           : StringNullableFilter.fromJson(
@@ -125,8 +126,6 @@ UserWhereUniqueInput _$UserWhereUniqueInputFromJson(
         Map<String, dynamic> json) =>
     UserWhereUniqueInput(
       id: json['id'] as int?,
-      email: json['email'] as String?,
-      phone: json['phone'] as String?,
     );
 
 Map<String, dynamic> _$UserWhereUniqueInputToJson(
@@ -140,8 +139,6 @@ Map<String, dynamic> _$UserWhereUniqueInputToJson(
   }
 
   writeNotNull('id', instance.id);
-  writeNotNull('email', instance.email);
-  writeNotNull('phone', instance.phone);
   return val;
 }
 
@@ -234,7 +231,7 @@ UserScalarWhereWithAggregatesInput _$UserScalarWhereWithAggregatesInputFromJson(
               json['lname'] as Map<String, dynamic>),
       email: json['email'] == null
           ? null
-          : StringWithAggregatesFilter.fromJson(
+          : StringNullableWithAggregatesFilter.fromJson(
               json['email'] as Map<String, dynamic>),
       phone: json['phone'] == null
           ? null
@@ -983,7 +980,7 @@ UserCreateInput _$UserCreateInputFromJson(Map<String, dynamic> json) =>
     UserCreateInput(
       fname: json['fname'] as String?,
       lname: json['lname'] as String?,
-      email: json['email'] as String,
+      email: json['email'] as String?,
       phone: json['phone'] as String?,
       password: json['password'] as String?,
       profile: json['profile'] as String?,
@@ -1005,7 +1002,7 @@ Map<String, dynamic> _$UserCreateInputToJson(UserCreateInput instance) {
 
   writeNotNull('fname', instance.fname);
   writeNotNull('lname', instance.lname);
-  val['email'] = instance.email;
+  writeNotNull('email', instance.email);
   writeNotNull('phone', instance.phone);
   writeNotNull('password', instance.password);
   writeNotNull('profile', instance.profile);
@@ -1039,7 +1036,7 @@ UserUncheckedCreateInput _$UserUncheckedCreateInputFromJson(
       id: json['id'] as int?,
       fname: json['fname'] as String?,
       lname: json['lname'] as String?,
-      email: json['email'] as String,
+      email: json['email'] as String?,
       phone: json['phone'] as String?,
       password: json['password'] as String?,
       profile: json['profile'] as String?,
@@ -1063,7 +1060,7 @@ Map<String, dynamic> _$UserUncheckedCreateInputToJson(
   writeNotNull('id', instance.id);
   writeNotNull('fname', instance.fname);
   writeNotNull('lname', instance.lname);
-  val['email'] = instance.email;
+  writeNotNull('email', instance.email);
   writeNotNull('phone', instance.phone);
   writeNotNull('password', instance.password);
   writeNotNull('profile', instance.profile);
@@ -1091,7 +1088,7 @@ UserUpdateInput _$UserUpdateInputFromJson(Map<String, dynamic> json) =>
               json['lname'] as Map<String, dynamic>),
       email: json['email'] == null
           ? null
-          : StringFieldUpdateOperationsInput.fromJson(
+          : NullableStringFieldUpdateOperationsInput.fromJson(
               json['email'] as Map<String, dynamic>),
       phone: json['phone'] == null
           ? null
@@ -1157,7 +1154,7 @@ UserUncheckedUpdateInput _$UserUncheckedUpdateInputFromJson(
               json['lname'] as Map<String, dynamic>),
       email: json['email'] == null
           ? null
-          : StringFieldUpdateOperationsInput.fromJson(
+          : NullableStringFieldUpdateOperationsInput.fromJson(
               json['email'] as Map<String, dynamic>),
       phone: json['phone'] == null
           ? null
@@ -1213,7 +1210,7 @@ UserCreateManyInput _$UserCreateManyInputFromJson(Map<String, dynamic> json) =>
       id: json['id'] as int?,
       fname: json['fname'] as String?,
       lname: json['lname'] as String?,
-      email: json['email'] as String,
+      email: json['email'] as String?,
       phone: json['phone'] as String?,
       password: json['password'] as String?,
       profile: json['profile'] as String?,
@@ -1236,7 +1233,7 @@ Map<String, dynamic> _$UserCreateManyInputToJson(UserCreateManyInput instance) {
   writeNotNull('id', instance.id);
   writeNotNull('fname', instance.fname);
   writeNotNull('lname', instance.lname);
-  val['email'] = instance.email;
+  writeNotNull('email', instance.email);
   writeNotNull('phone', instance.phone);
   writeNotNull('password', instance.password);
   writeNotNull('profile', instance.profile);
@@ -1265,7 +1262,7 @@ UserUpdateManyMutationInput _$UserUpdateManyMutationInputFromJson(
               json['lname'] as Map<String, dynamic>),
       email: json['email'] == null
           ? null
-          : StringFieldUpdateOperationsInput.fromJson(
+          : NullableStringFieldUpdateOperationsInput.fromJson(
               json['email'] as Map<String, dynamic>),
       phone: json['phone'] == null
           ? null
@@ -1332,7 +1329,7 @@ UserUncheckedUpdateManyInput _$UserUncheckedUpdateManyInputFromJson(
               json['lname'] as Map<String, dynamic>),
       email: json['email'] == null
           ? null
-          : StringFieldUpdateOperationsInput.fromJson(
+          : NullableStringFieldUpdateOperationsInput.fromJson(
               json['email'] as Map<String, dynamic>),
       phone: json['phone'] == null
           ? null
@@ -2414,45 +2411,6 @@ Map<String, dynamic> _$StringNullableFilterToJson(
   return val;
 }
 
-StringFilter _$StringFilterFromJson(Map<String, dynamic> json) => StringFilter(
-      equals: json['equals'] as String?,
-      $in: (json['in'] as List<dynamic>?)?.map((e) => e as String),
-      notIn: (json['notIn'] as List<dynamic>?)?.map((e) => e as String),
-      lt: json['lt'] as String?,
-      lte: json['lte'] as String?,
-      gt: json['gt'] as String?,
-      gte: json['gte'] as String?,
-      contains: json['contains'] as String?,
-      startsWith: json['startsWith'] as String?,
-      endsWith: json['endsWith'] as String?,
-      not: json['not'] == null
-          ? null
-          : NestedStringFilter.fromJson(json['not'] as Map<String, dynamic>),
-    );
-
-Map<String, dynamic> _$StringFilterToJson(StringFilter instance) {
-  final val = <String, dynamic>{};
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('equals', instance.equals);
-  writeNotNull('in', instance.$in?.toList());
-  writeNotNull('notIn', instance.notIn?.toList());
-  writeNotNull('lt', instance.lt);
-  writeNotNull('lte', instance.lte);
-  writeNotNull('gt', instance.gt);
-  writeNotNull('gte', instance.gte);
-  writeNotNull('contains', instance.contains);
-  writeNotNull('startsWith', instance.startsWith);
-  writeNotNull('endsWith', instance.endsWith);
-  writeNotNull('not', instance.not?.toJson());
-  return val;
-}
-
 DateTimeNullableFilter _$DateTimeNullableFilterFromJson(
         Map<String, dynamic> json) =>
     DateTimeNullableFilter(
@@ -2809,61 +2767,6 @@ Map<String, dynamic> _$StringNullableWithAggregatesFilterToJson(
   return val;
 }
 
-StringWithAggregatesFilter _$StringWithAggregatesFilterFromJson(
-        Map<String, dynamic> json) =>
-    StringWithAggregatesFilter(
-      equals: json['equals'] as String?,
-      $in: (json['in'] as List<dynamic>?)?.map((e) => e as String),
-      notIn: (json['notIn'] as List<dynamic>?)?.map((e) => e as String),
-      lt: json['lt'] as String?,
-      lte: json['lte'] as String?,
-      gt: json['gt'] as String?,
-      gte: json['gte'] as String?,
-      contains: json['contains'] as String?,
-      startsWith: json['startsWith'] as String?,
-      endsWith: json['endsWith'] as String?,
-      not: json['not'] == null
-          ? null
-          : NestedStringWithAggregatesFilter.fromJson(
-              json['not'] as Map<String, dynamic>),
-      $count: json['_count'] == null
-          ? null
-          : NestedIntFilter.fromJson(json['_count'] as Map<String, dynamic>),
-      $min: json['_min'] == null
-          ? null
-          : NestedStringFilter.fromJson(json['_min'] as Map<String, dynamic>),
-      $max: json['_max'] == null
-          ? null
-          : NestedStringFilter.fromJson(json['_max'] as Map<String, dynamic>),
-    );
-
-Map<String, dynamic> _$StringWithAggregatesFilterToJson(
-    StringWithAggregatesFilter instance) {
-  final val = <String, dynamic>{};
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('equals', instance.equals);
-  writeNotNull('in', instance.$in?.toList());
-  writeNotNull('notIn', instance.notIn?.toList());
-  writeNotNull('lt', instance.lt);
-  writeNotNull('lte', instance.lte);
-  writeNotNull('gt', instance.gt);
-  writeNotNull('gte', instance.gte);
-  writeNotNull('contains', instance.contains);
-  writeNotNull('startsWith', instance.startsWith);
-  writeNotNull('endsWith', instance.endsWith);
-  writeNotNull('not', instance.not?.toJson());
-  writeNotNull('_count', instance.$count?.toJson());
-  writeNotNull('_min', instance.$min?.toJson());
-  writeNotNull('_max', instance.$max?.toJson());
-  return val;
-}
-
 DateTimeNullableWithAggregatesFilter
     _$DateTimeNullableWithAggregatesFilterFromJson(Map<String, dynamic> json) =>
         DateTimeNullableWithAggregatesFilter(
@@ -3183,6 +3086,45 @@ Map<String, dynamic> _$IntNullableWithAggregatesFilterToJson(
   return val;
 }
 
+StringFilter _$StringFilterFromJson(Map<String, dynamic> json) => StringFilter(
+      equals: json['equals'] as String?,
+      $in: (json['in'] as List<dynamic>?)?.map((e) => e as String),
+      notIn: (json['notIn'] as List<dynamic>?)?.map((e) => e as String),
+      lt: json['lt'] as String?,
+      lte: json['lte'] as String?,
+      gt: json['gt'] as String?,
+      gte: json['gte'] as String?,
+      contains: json['contains'] as String?,
+      startsWith: json['startsWith'] as String?,
+      endsWith: json['endsWith'] as String?,
+      not: json['not'] == null
+          ? null
+          : NestedStringFilter.fromJson(json['not'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$StringFilterToJson(StringFilter instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('equals', instance.equals);
+  writeNotNull('in', instance.$in?.toList());
+  writeNotNull('notIn', instance.notIn?.toList());
+  writeNotNull('lt', instance.lt);
+  writeNotNull('lte', instance.lte);
+  writeNotNull('gt', instance.gt);
+  writeNotNull('gte', instance.gte);
+  writeNotNull('contains', instance.contains);
+  writeNotNull('startsWith', instance.startsWith);
+  writeNotNull('endsWith', instance.endsWith);
+  writeNotNull('not', instance.not?.toJson());
+  return val;
+}
+
 TblalbumsCountOrderByAggregateInput
     _$TblalbumsCountOrderByAggregateInputFromJson(Map<String, dynamic> json) =>
         TblalbumsCountOrderByAggregateInput(
@@ -3316,6 +3258,61 @@ Map<String, dynamic> _$TblalbumsSumOrderByAggregateInputToJson(
 
   writeNotNull('id', _$SortOrderEnumMap[instance.id]);
   writeNotNull('userid', _$SortOrderEnumMap[instance.userid]);
+  return val;
+}
+
+StringWithAggregatesFilter _$StringWithAggregatesFilterFromJson(
+        Map<String, dynamic> json) =>
+    StringWithAggregatesFilter(
+      equals: json['equals'] as String?,
+      $in: (json['in'] as List<dynamic>?)?.map((e) => e as String),
+      notIn: (json['notIn'] as List<dynamic>?)?.map((e) => e as String),
+      lt: json['lt'] as String?,
+      lte: json['lte'] as String?,
+      gt: json['gt'] as String?,
+      gte: json['gte'] as String?,
+      contains: json['contains'] as String?,
+      startsWith: json['startsWith'] as String?,
+      endsWith: json['endsWith'] as String?,
+      not: json['not'] == null
+          ? null
+          : NestedStringWithAggregatesFilter.fromJson(
+              json['not'] as Map<String, dynamic>),
+      $count: json['_count'] == null
+          ? null
+          : NestedIntFilter.fromJson(json['_count'] as Map<String, dynamic>),
+      $min: json['_min'] == null
+          ? null
+          : NestedStringFilter.fromJson(json['_min'] as Map<String, dynamic>),
+      $max: json['_max'] == null
+          ? null
+          : NestedStringFilter.fromJson(json['_max'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$StringWithAggregatesFilterToJson(
+    StringWithAggregatesFilter instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('equals', instance.equals);
+  writeNotNull('in', instance.$in?.toList());
+  writeNotNull('notIn', instance.notIn?.toList());
+  writeNotNull('lt', instance.lt);
+  writeNotNull('lte', instance.lte);
+  writeNotNull('gt', instance.gt);
+  writeNotNull('gte', instance.gte);
+  writeNotNull('contains', instance.contains);
+  writeNotNull('startsWith', instance.startsWith);
+  writeNotNull('endsWith', instance.endsWith);
+  writeNotNull('not', instance.not?.toJson());
+  writeNotNull('_count', instance.$count?.toJson());
+  writeNotNull('_min', instance.$min?.toJson());
+  writeNotNull('_max', instance.$max?.toJson());
   return val;
 }
 
@@ -3480,26 +3477,6 @@ Map<String, dynamic> _$NullableStringFieldUpdateOperationsInputToJson(
   return val;
 }
 
-StringFieldUpdateOperationsInput _$StringFieldUpdateOperationsInputFromJson(
-        Map<String, dynamic> json) =>
-    StringFieldUpdateOperationsInput(
-      set: json['set'] as String?,
-    );
-
-Map<String, dynamic> _$StringFieldUpdateOperationsInputToJson(
-    StringFieldUpdateOperationsInput instance) {
-  final val = <String, dynamic>{};
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('set', instance.set);
-  return val;
-}
-
 NullableDateTimeFieldUpdateOperationsInput
     _$NullableDateTimeFieldUpdateOperationsInputFromJson(
             Map<String, dynamic> json) =>
@@ -3582,6 +3559,26 @@ Map<String, dynamic> _$NullableIntFieldUpdateOperationsInputToJson(
   return val;
 }
 
+StringFieldUpdateOperationsInput _$StringFieldUpdateOperationsInputFromJson(
+        Map<String, dynamic> json) =>
+    StringFieldUpdateOperationsInput(
+      set: json['set'] as String?,
+    );
+
+Map<String, dynamic> _$StringFieldUpdateOperationsInputToJson(
+    StringFieldUpdateOperationsInput instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('set', instance.set);
+  return val;
+}
+
 NestedIntFilter _$NestedIntFilterFromJson(Map<String, dynamic> json) =>
     NestedIntFilter(
       equals: json['equals'] as int?,
@@ -3637,46 +3634,6 @@ NestedStringNullableFilter _$NestedStringNullableFilterFromJson(
 
 Map<String, dynamic> _$NestedStringNullableFilterToJson(
     NestedStringNullableFilter instance) {
-  final val = <String, dynamic>{};
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('equals', instance.equals);
-  writeNotNull('in', instance.$in?.toList());
-  writeNotNull('notIn', instance.notIn?.toList());
-  writeNotNull('lt', instance.lt);
-  writeNotNull('lte', instance.lte);
-  writeNotNull('gt', instance.gt);
-  writeNotNull('gte', instance.gte);
-  writeNotNull('contains', instance.contains);
-  writeNotNull('startsWith', instance.startsWith);
-  writeNotNull('endsWith', instance.endsWith);
-  writeNotNull('not', instance.not?.toJson());
-  return val;
-}
-
-NestedStringFilter _$NestedStringFilterFromJson(Map<String, dynamic> json) =>
-    NestedStringFilter(
-      equals: json['equals'] as String?,
-      $in: (json['in'] as List<dynamic>?)?.map((e) => e as String),
-      notIn: (json['notIn'] as List<dynamic>?)?.map((e) => e as String),
-      lt: json['lt'] as String?,
-      lte: json['lte'] as String?,
-      gt: json['gt'] as String?,
-      gte: json['gte'] as String?,
-      contains: json['contains'] as String?,
-      startsWith: json['startsWith'] as String?,
-      endsWith: json['endsWith'] as String?,
-      not: json['not'] == null
-          ? null
-          : NestedStringFilter.fromJson(json['not'] as Map<String, dynamic>),
-    );
-
-Map<String, dynamic> _$NestedStringFilterToJson(NestedStringFilter instance) {
   final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {
@@ -3948,61 +3905,6 @@ Map<String, dynamic> _$NestedIntNullableFilterToJson(
   return val;
 }
 
-NestedStringWithAggregatesFilter _$NestedStringWithAggregatesFilterFromJson(
-        Map<String, dynamic> json) =>
-    NestedStringWithAggregatesFilter(
-      equals: json['equals'] as String?,
-      $in: (json['in'] as List<dynamic>?)?.map((e) => e as String),
-      notIn: (json['notIn'] as List<dynamic>?)?.map((e) => e as String),
-      lt: json['lt'] as String?,
-      lte: json['lte'] as String?,
-      gt: json['gt'] as String?,
-      gte: json['gte'] as String?,
-      contains: json['contains'] as String?,
-      startsWith: json['startsWith'] as String?,
-      endsWith: json['endsWith'] as String?,
-      not: json['not'] == null
-          ? null
-          : NestedStringWithAggregatesFilter.fromJson(
-              json['not'] as Map<String, dynamic>),
-      $count: json['_count'] == null
-          ? null
-          : NestedIntFilter.fromJson(json['_count'] as Map<String, dynamic>),
-      $min: json['_min'] == null
-          ? null
-          : NestedStringFilter.fromJson(json['_min'] as Map<String, dynamic>),
-      $max: json['_max'] == null
-          ? null
-          : NestedStringFilter.fromJson(json['_max'] as Map<String, dynamic>),
-    );
-
-Map<String, dynamic> _$NestedStringWithAggregatesFilterToJson(
-    NestedStringWithAggregatesFilter instance) {
-  final val = <String, dynamic>{};
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('equals', instance.equals);
-  writeNotNull('in', instance.$in?.toList());
-  writeNotNull('notIn', instance.notIn?.toList());
-  writeNotNull('lt', instance.lt);
-  writeNotNull('lte', instance.lte);
-  writeNotNull('gt', instance.gt);
-  writeNotNull('gte', instance.gte);
-  writeNotNull('contains', instance.contains);
-  writeNotNull('startsWith', instance.startsWith);
-  writeNotNull('endsWith', instance.endsWith);
-  writeNotNull('not', instance.not?.toJson());
-  writeNotNull('_count', instance.$count?.toJson());
-  writeNotNull('_min', instance.$min?.toJson());
-  writeNotNull('_max', instance.$max?.toJson());
-  return val;
-}
-
 NestedDateTimeNullableWithAggregatesFilter
     _$NestedDateTimeNullableWithAggregatesFilterFromJson(
             Map<String, dynamic> json) =>
@@ -4181,11 +4083,106 @@ Map<String, dynamic> _$NestedFloatNullableFilterToJson(
   return val;
 }
 
+NestedStringFilter _$NestedStringFilterFromJson(Map<String, dynamic> json) =>
+    NestedStringFilter(
+      equals: json['equals'] as String?,
+      $in: (json['in'] as List<dynamic>?)?.map((e) => e as String),
+      notIn: (json['notIn'] as List<dynamic>?)?.map((e) => e as String),
+      lt: json['lt'] as String?,
+      lte: json['lte'] as String?,
+      gt: json['gt'] as String?,
+      gte: json['gte'] as String?,
+      contains: json['contains'] as String?,
+      startsWith: json['startsWith'] as String?,
+      endsWith: json['endsWith'] as String?,
+      not: json['not'] == null
+          ? null
+          : NestedStringFilter.fromJson(json['not'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$NestedStringFilterToJson(NestedStringFilter instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('equals', instance.equals);
+  writeNotNull('in', instance.$in?.toList());
+  writeNotNull('notIn', instance.notIn?.toList());
+  writeNotNull('lt', instance.lt);
+  writeNotNull('lte', instance.lte);
+  writeNotNull('gt', instance.gt);
+  writeNotNull('gte', instance.gte);
+  writeNotNull('contains', instance.contains);
+  writeNotNull('startsWith', instance.startsWith);
+  writeNotNull('endsWith', instance.endsWith);
+  writeNotNull('not', instance.not?.toJson());
+  return val;
+}
+
+NestedStringWithAggregatesFilter _$NestedStringWithAggregatesFilterFromJson(
+        Map<String, dynamic> json) =>
+    NestedStringWithAggregatesFilter(
+      equals: json['equals'] as String?,
+      $in: (json['in'] as List<dynamic>?)?.map((e) => e as String),
+      notIn: (json['notIn'] as List<dynamic>?)?.map((e) => e as String),
+      lt: json['lt'] as String?,
+      lte: json['lte'] as String?,
+      gt: json['gt'] as String?,
+      gte: json['gte'] as String?,
+      contains: json['contains'] as String?,
+      startsWith: json['startsWith'] as String?,
+      endsWith: json['endsWith'] as String?,
+      not: json['not'] == null
+          ? null
+          : NestedStringWithAggregatesFilter.fromJson(
+              json['not'] as Map<String, dynamic>),
+      $count: json['_count'] == null
+          ? null
+          : NestedIntFilter.fromJson(json['_count'] as Map<String, dynamic>),
+      $min: json['_min'] == null
+          ? null
+          : NestedStringFilter.fromJson(json['_min'] as Map<String, dynamic>),
+      $max: json['_max'] == null
+          ? null
+          : NestedStringFilter.fromJson(json['_max'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$NestedStringWithAggregatesFilterToJson(
+    NestedStringWithAggregatesFilter instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('equals', instance.equals);
+  writeNotNull('in', instance.$in?.toList());
+  writeNotNull('notIn', instance.notIn?.toList());
+  writeNotNull('lt', instance.lt);
+  writeNotNull('lte', instance.lte);
+  writeNotNull('gt', instance.gt);
+  writeNotNull('gte', instance.gte);
+  writeNotNull('contains', instance.contains);
+  writeNotNull('startsWith', instance.startsWith);
+  writeNotNull('endsWith', instance.endsWith);
+  writeNotNull('not', instance.not?.toJson());
+  writeNotNull('_count', instance.$count?.toJson());
+  writeNotNull('_min', instance.$min?.toJson());
+  writeNotNull('_max', instance.$max?.toJson());
+  return val;
+}
+
 User _$UserFromJson(Map<String, dynamic> json) => User(
       id: json['id'] as int,
       fname: json['fname'] as String?,
       lname: json['lname'] as String?,
-      email: json['email'] as String,
+      email: json['email'] as String?,
       phone: json['phone'] as String?,
       password: json['password'] as String?,
       profile: json['profile'] as String?,
@@ -4209,7 +4206,7 @@ Map<String, dynamic> _$UserToJson(User instance) {
 
   writeNotNull('fname', instance.fname);
   writeNotNull('lname', instance.lname);
-  val['email'] = instance.email;
+  writeNotNull('email', instance.email);
   writeNotNull('phone', instance.phone);
   writeNotNull('password', instance.password);
   writeNotNull('profile', instance.profile);

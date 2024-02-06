@@ -131,7 +131,7 @@ class UserWhereInput implements _i1.JsonSerializable {
 
   final StringNullableFilter? lname;
 
-  final StringFilter? email;
+  final StringNullableFilter? email;
 
   final StringNullableFilter? phone;
 
@@ -197,20 +197,12 @@ class UserOrderByWithRelationInput implements _i1.JsonSerializable {
 
 @_i1.jsonSerializable
 class UserWhereUniqueInput implements _i1.JsonSerializable {
-  const UserWhereUniqueInput({
-    this.id,
-    this.email,
-    this.phone,
-  });
+  const UserWhereUniqueInput({this.id});
 
   factory UserWhereUniqueInput.fromJson(Map<String, dynamic> json) =>
       _$UserWhereUniqueInputFromJson(json);
 
   final int? id;
-
-  final String? email;
-
-  final String? phone;
 
   @override
   Map<String, dynamic> toJson() => _$UserWhereUniqueInputToJson(this);
@@ -315,7 +307,7 @@ class UserScalarWhereWithAggregatesInput implements _i1.JsonSerializable {
 
   final StringNullableWithAggregatesFilter? lname;
 
-  final StringWithAggregatesFilter? email;
+  final StringNullableWithAggregatesFilter? email;
 
   final StringNullableWithAggregatesFilter? phone;
 
@@ -920,7 +912,7 @@ class UserCreateInput implements _i1.JsonSerializable {
   const UserCreateInput({
     this.fname,
     this.lname,
-    required this.email,
+    this.email,
     this.phone,
     this.password,
     this.profile,
@@ -936,7 +928,7 @@ class UserCreateInput implements _i1.JsonSerializable {
 
   final String? lname;
 
-  final String email;
+  final String? email;
 
   final String? phone;
 
@@ -962,7 +954,7 @@ class UserUncheckedCreateInput implements _i1.JsonSerializable {
     this.id,
     this.fname,
     this.lname,
-    required this.email,
+    this.email,
     this.phone,
     this.password,
     this.profile,
@@ -980,7 +972,7 @@ class UserUncheckedCreateInput implements _i1.JsonSerializable {
 
   final String? lname;
 
-  final String email;
+  final String? email;
 
   final String? phone;
 
@@ -1021,7 +1013,7 @@ class UserUpdateInput implements _i1.JsonSerializable {
 
   final NullableStringFieldUpdateOperationsInput? lname;
 
-  final StringFieldUpdateOperationsInput? email;
+  final NullableStringFieldUpdateOperationsInput? email;
 
   final NullableStringFieldUpdateOperationsInput? phone;
 
@@ -1065,7 +1057,7 @@ class UserUncheckedUpdateInput implements _i1.JsonSerializable {
 
   final NullableStringFieldUpdateOperationsInput? lname;
 
-  final StringFieldUpdateOperationsInput? email;
+  final NullableStringFieldUpdateOperationsInput? email;
 
   final NullableStringFieldUpdateOperationsInput? phone;
 
@@ -1091,7 +1083,7 @@ class UserCreateManyInput implements _i1.JsonSerializable {
     this.id,
     this.fname,
     this.lname,
-    required this.email,
+    this.email,
     this.phone,
     this.password,
     this.profile,
@@ -1109,7 +1101,7 @@ class UserCreateManyInput implements _i1.JsonSerializable {
 
   final String? lname;
 
-  final String email;
+  final String? email;
 
   final String? phone;
 
@@ -1150,7 +1142,7 @@ class UserUpdateManyMutationInput implements _i1.JsonSerializable {
 
   final NullableStringFieldUpdateOperationsInput? lname;
 
-  final StringFieldUpdateOperationsInput? email;
+  final NullableStringFieldUpdateOperationsInput? email;
 
   final NullableStringFieldUpdateOperationsInput? phone;
 
@@ -1194,7 +1186,7 @@ class UserUncheckedUpdateManyInput implements _i1.JsonSerializable {
 
   final NullableStringFieldUpdateOperationsInput? lname;
 
-  final StringFieldUpdateOperationsInput? email;
+  final NullableStringFieldUpdateOperationsInput? email;
 
   final NullableStringFieldUpdateOperationsInput? phone;
 
@@ -1996,52 +1988,6 @@ class StringNullableFilter implements _i1.JsonSerializable {
 }
 
 @_i1.jsonSerializable
-class StringFilter implements _i1.JsonSerializable {
-  const StringFilter({
-    this.equals,
-    this.$in,
-    this.notIn,
-    this.lt,
-    this.lte,
-    this.gt,
-    this.gte,
-    this.contains,
-    this.startsWith,
-    this.endsWith,
-    this.not,
-  });
-
-  factory StringFilter.fromJson(Map<String, dynamic> json) =>
-      _$StringFilterFromJson(json);
-
-  final String? equals;
-
-  @JsonKey(name: r'in')
-  final Iterable<String>? $in;
-
-  final Iterable<String>? notIn;
-
-  final String? lt;
-
-  final String? lte;
-
-  final String? gt;
-
-  final String? gte;
-
-  final String? contains;
-
-  final String? startsWith;
-
-  final String? endsWith;
-
-  final NestedStringFilter? not;
-
-  @override
-  Map<String, dynamic> toJson() => _$StringFilterToJson(this);
-}
-
-@_i1.jsonSerializable
 class DateTimeNullableFilter implements _i1.JsonSerializable {
   const DateTimeNullableFilter({
     this.equals,
@@ -2372,64 +2318,6 @@ class StringNullableWithAggregatesFilter implements _i1.JsonSerializable {
 }
 
 @_i1.jsonSerializable
-class StringWithAggregatesFilter implements _i1.JsonSerializable {
-  const StringWithAggregatesFilter({
-    this.equals,
-    this.$in,
-    this.notIn,
-    this.lt,
-    this.lte,
-    this.gt,
-    this.gte,
-    this.contains,
-    this.startsWith,
-    this.endsWith,
-    this.not,
-    this.$count,
-    this.$min,
-    this.$max,
-  });
-
-  factory StringWithAggregatesFilter.fromJson(Map<String, dynamic> json) =>
-      _$StringWithAggregatesFilterFromJson(json);
-
-  final String? equals;
-
-  @JsonKey(name: r'in')
-  final Iterable<String>? $in;
-
-  final Iterable<String>? notIn;
-
-  final String? lt;
-
-  final String? lte;
-
-  final String? gt;
-
-  final String? gte;
-
-  final String? contains;
-
-  final String? startsWith;
-
-  final String? endsWith;
-
-  final NestedStringWithAggregatesFilter? not;
-
-  @JsonKey(name: r'_count')
-  final NestedIntFilter? $count;
-
-  @JsonKey(name: r'_min')
-  final NestedStringFilter? $min;
-
-  @JsonKey(name: r'_max')
-  final NestedStringFilter? $max;
-
-  @override
-  Map<String, dynamic> toJson() => _$StringWithAggregatesFilterToJson(this);
-}
-
-@_i1.jsonSerializable
 class DateTimeNullableWithAggregatesFilter implements _i1.JsonSerializable {
   const DateTimeNullableWithAggregatesFilter({
     this.equals,
@@ -2736,6 +2624,52 @@ class IntNullableWithAggregatesFilter implements _i1.JsonSerializable {
 }
 
 @_i1.jsonSerializable
+class StringFilter implements _i1.JsonSerializable {
+  const StringFilter({
+    this.equals,
+    this.$in,
+    this.notIn,
+    this.lt,
+    this.lte,
+    this.gt,
+    this.gte,
+    this.contains,
+    this.startsWith,
+    this.endsWith,
+    this.not,
+  });
+
+  factory StringFilter.fromJson(Map<String, dynamic> json) =>
+      _$StringFilterFromJson(json);
+
+  final String? equals;
+
+  @JsonKey(name: r'in')
+  final Iterable<String>? $in;
+
+  final Iterable<String>? notIn;
+
+  final String? lt;
+
+  final String? lte;
+
+  final String? gt;
+
+  final String? gte;
+
+  final String? contains;
+
+  final String? startsWith;
+
+  final String? endsWith;
+
+  final NestedStringFilter? not;
+
+  @override
+  Map<String, dynamic> toJson() => _$StringFilterToJson(this);
+}
+
+@_i1.jsonSerializable
 class TblalbumsCountOrderByAggregateInput implements _i1.JsonSerializable {
   const TblalbumsCountOrderByAggregateInput({
     this.id,
@@ -2875,6 +2809,64 @@ class TblalbumsSumOrderByAggregateInput implements _i1.JsonSerializable {
   @override
   Map<String, dynamic> toJson() =>
       _$TblalbumsSumOrderByAggregateInputToJson(this);
+}
+
+@_i1.jsonSerializable
+class StringWithAggregatesFilter implements _i1.JsonSerializable {
+  const StringWithAggregatesFilter({
+    this.equals,
+    this.$in,
+    this.notIn,
+    this.lt,
+    this.lte,
+    this.gt,
+    this.gte,
+    this.contains,
+    this.startsWith,
+    this.endsWith,
+    this.not,
+    this.$count,
+    this.$min,
+    this.$max,
+  });
+
+  factory StringWithAggregatesFilter.fromJson(Map<String, dynamic> json) =>
+      _$StringWithAggregatesFilterFromJson(json);
+
+  final String? equals;
+
+  @JsonKey(name: r'in')
+  final Iterable<String>? $in;
+
+  final Iterable<String>? notIn;
+
+  final String? lt;
+
+  final String? lte;
+
+  final String? gt;
+
+  final String? gte;
+
+  final String? contains;
+
+  final String? startsWith;
+
+  final String? endsWith;
+
+  final NestedStringWithAggregatesFilter? not;
+
+  @JsonKey(name: r'_count')
+  final NestedIntFilter? $count;
+
+  @JsonKey(name: r'_min')
+  final NestedStringFilter? $min;
+
+  @JsonKey(name: r'_max')
+  final NestedStringFilter? $max;
+
+  @override
+  Map<String, dynamic> toJson() => _$StringWithAggregatesFilterToJson(this);
 }
 
 @_i1.jsonSerializable
@@ -3041,21 +3033,6 @@ class NullableStringFieldUpdateOperationsInput implements _i1.JsonSerializable {
 }
 
 @_i1.jsonSerializable
-class StringFieldUpdateOperationsInput implements _i1.JsonSerializable {
-  const StringFieldUpdateOperationsInput({this.set});
-
-  factory StringFieldUpdateOperationsInput.fromJson(
-          Map<String, dynamic> json) =>
-      _$StringFieldUpdateOperationsInputFromJson(json);
-
-  final String? set;
-
-  @override
-  Map<String, dynamic> toJson() =>
-      _$StringFieldUpdateOperationsInputToJson(this);
-}
-
-@_i1.jsonSerializable
 class NullableDateTimeFieldUpdateOperationsInput
     implements _i1.JsonSerializable {
   const NullableDateTimeFieldUpdateOperationsInput({this.set});
@@ -3125,6 +3102,21 @@ class NullableIntFieldUpdateOperationsInput implements _i1.JsonSerializable {
   @override
   Map<String, dynamic> toJson() =>
       _$NullableIntFieldUpdateOperationsInputToJson(this);
+}
+
+@_i1.jsonSerializable
+class StringFieldUpdateOperationsInput implements _i1.JsonSerializable {
+  const StringFieldUpdateOperationsInput({this.set});
+
+  factory StringFieldUpdateOperationsInput.fromJson(
+          Map<String, dynamic> json) =>
+      _$StringFieldUpdateOperationsInputFromJson(json);
+
+  final String? set;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$StringFieldUpdateOperationsInputToJson(this);
 }
 
 @_i1.jsonSerializable
@@ -3208,52 +3200,6 @@ class NestedStringNullableFilter implements _i1.JsonSerializable {
 
   @override
   Map<String, dynamic> toJson() => _$NestedStringNullableFilterToJson(this);
-}
-
-@_i1.jsonSerializable
-class NestedStringFilter implements _i1.JsonSerializable {
-  const NestedStringFilter({
-    this.equals,
-    this.$in,
-    this.notIn,
-    this.lt,
-    this.lte,
-    this.gt,
-    this.gte,
-    this.contains,
-    this.startsWith,
-    this.endsWith,
-    this.not,
-  });
-
-  factory NestedStringFilter.fromJson(Map<String, dynamic> json) =>
-      _$NestedStringFilterFromJson(json);
-
-  final String? equals;
-
-  @JsonKey(name: r'in')
-  final Iterable<String>? $in;
-
-  final Iterable<String>? notIn;
-
-  final String? lt;
-
-  final String? lte;
-
-  final String? gt;
-
-  final String? gte;
-
-  final String? contains;
-
-  final String? startsWith;
-
-  final String? endsWith;
-
-  final NestedStringFilter? not;
-
-  @override
-  Map<String, dynamic> toJson() => _$NestedStringFilterToJson(this);
 }
 
 @_i1.jsonSerializable
@@ -3485,66 +3431,6 @@ class NestedIntNullableFilter implements _i1.JsonSerializable {
 }
 
 @_i1.jsonSerializable
-class NestedStringWithAggregatesFilter implements _i1.JsonSerializable {
-  const NestedStringWithAggregatesFilter({
-    this.equals,
-    this.$in,
-    this.notIn,
-    this.lt,
-    this.lte,
-    this.gt,
-    this.gte,
-    this.contains,
-    this.startsWith,
-    this.endsWith,
-    this.not,
-    this.$count,
-    this.$min,
-    this.$max,
-  });
-
-  factory NestedStringWithAggregatesFilter.fromJson(
-          Map<String, dynamic> json) =>
-      _$NestedStringWithAggregatesFilterFromJson(json);
-
-  final String? equals;
-
-  @JsonKey(name: r'in')
-  final Iterable<String>? $in;
-
-  final Iterable<String>? notIn;
-
-  final String? lt;
-
-  final String? lte;
-
-  final String? gt;
-
-  final String? gte;
-
-  final String? contains;
-
-  final String? startsWith;
-
-  final String? endsWith;
-
-  final NestedStringWithAggregatesFilter? not;
-
-  @JsonKey(name: r'_count')
-  final NestedIntFilter? $count;
-
-  @JsonKey(name: r'_min')
-  final NestedStringFilter? $min;
-
-  @JsonKey(name: r'_max')
-  final NestedStringFilter? $max;
-
-  @override
-  Map<String, dynamic> toJson() =>
-      _$NestedStringWithAggregatesFilterToJson(this);
-}
-
-@_i1.jsonSerializable
 class NestedDateTimeNullableWithAggregatesFilter
     implements _i1.JsonSerializable {
   const NestedDateTimeNullableWithAggregatesFilter({
@@ -3693,12 +3579,118 @@ class NestedFloatNullableFilter implements _i1.JsonSerializable {
 }
 
 @_i1.jsonSerializable
+class NestedStringFilter implements _i1.JsonSerializable {
+  const NestedStringFilter({
+    this.equals,
+    this.$in,
+    this.notIn,
+    this.lt,
+    this.lte,
+    this.gt,
+    this.gte,
+    this.contains,
+    this.startsWith,
+    this.endsWith,
+    this.not,
+  });
+
+  factory NestedStringFilter.fromJson(Map<String, dynamic> json) =>
+      _$NestedStringFilterFromJson(json);
+
+  final String? equals;
+
+  @JsonKey(name: r'in')
+  final Iterable<String>? $in;
+
+  final Iterable<String>? notIn;
+
+  final String? lt;
+
+  final String? lte;
+
+  final String? gt;
+
+  final String? gte;
+
+  final String? contains;
+
+  final String? startsWith;
+
+  final String? endsWith;
+
+  final NestedStringFilter? not;
+
+  @override
+  Map<String, dynamic> toJson() => _$NestedStringFilterToJson(this);
+}
+
+@_i1.jsonSerializable
+class NestedStringWithAggregatesFilter implements _i1.JsonSerializable {
+  const NestedStringWithAggregatesFilter({
+    this.equals,
+    this.$in,
+    this.notIn,
+    this.lt,
+    this.lte,
+    this.gt,
+    this.gte,
+    this.contains,
+    this.startsWith,
+    this.endsWith,
+    this.not,
+    this.$count,
+    this.$min,
+    this.$max,
+  });
+
+  factory NestedStringWithAggregatesFilter.fromJson(
+          Map<String, dynamic> json) =>
+      _$NestedStringWithAggregatesFilterFromJson(json);
+
+  final String? equals;
+
+  @JsonKey(name: r'in')
+  final Iterable<String>? $in;
+
+  final Iterable<String>? notIn;
+
+  final String? lt;
+
+  final String? lte;
+
+  final String? gt;
+
+  final String? gte;
+
+  final String? contains;
+
+  final String? startsWith;
+
+  final String? endsWith;
+
+  final NestedStringWithAggregatesFilter? not;
+
+  @JsonKey(name: r'_count')
+  final NestedIntFilter? $count;
+
+  @JsonKey(name: r'_min')
+  final NestedStringFilter? $min;
+
+  @JsonKey(name: r'_max')
+  final NestedStringFilter? $max;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      _$NestedStringWithAggregatesFilterToJson(this);
+}
+
+@_i1.jsonSerializable
 class User implements _i1.JsonSerializable {
   const User({
     required this.id,
     this.fname,
     this.lname,
-    required this.email,
+    this.email,
     this.phone,
     this.password,
     this.profile,
@@ -3715,7 +3707,7 @@ class User implements _i1.JsonSerializable {
 
   final String? lname;
 
-  final String email;
+  final String? email;
 
   final String? phone;
 
@@ -4080,7 +4072,7 @@ extension UserModelDelegateExtension on _i1.ModelDelegate<User> {
         : throw Exception('Unable to parse response'));
   }
 
-  UserFluent<User> create({required UserCreateInput data}) {
+  UserFluent<User> create({UserCreateInput? data}) {
     final args = [
       _i2.GraphQLArg(
         r'data',
@@ -8047,7 +8039,7 @@ class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
     final engine = _i5.BinaryEngine(
       logger: logger,
       schema:
-          r'Ly8gVGhpcyBpcyB5b3VyIFByaXNtYSBzY2hlbWEgZmlsZSwKLy8gbGVhcm4gbW9yZSBhYm91dCBpdCBpbiB0aGUgZG9jczogaHR0cHM6Ly9wcmlzLmx5L2QvcHJpc21hLXNjaGVtYQoKZ2VuZXJhdG9yIGNsaWVudCB7CiAgcHJvdmlkZXIgPSAiZGFydCBydW4gb3JtIgp9CgpkYXRhc291cmNlIGRiIHsKICBwcm92aWRlciA9ICJteXNxbCIKICB1cmwgICAgICA9IGVudigiREFUQUJBU0VfVVJMIikKfQoKbW9kZWwgdXNlciB7CiAgaWQgSW50IEBpZCBAZGVmYXVsdChhdXRvaW5jcmVtZW50KCkpCiAgZm5hbWUgU3RyaW5nPwogIGxuYW1lIFN0cmluZz8KICBlbWFpbCBTdHJpbmcgQHVuaXF1ZQogIHBob25lIFN0cmluZz8gQHVuaXF1ZQogIHBhc3N3b3JkIFN0cmluZz8KICBwcm9maWxlIFN0cmluZz8KICByb2xlIFN0cmluZz8KICBjcmVhdGVkX2F0IERhdGVUaW1lPwogIHVwZGF0ZWRfYXQgRGF0ZVRpbWU/Cn0KCm1vZGVsIHRibFBob3RvewogIGlkIEludCBAaWQgQGRlZmF1bHQoYXV0b2luY3JlbWVudCgpKQogIGFsYnVtc2lkIEludD8KICB0aXRsZSBTdHJpbmc/CiAgZGF0ZSBEYXRlVGltZT8KICB1cmwgU3RyaW5nPwogIHBhdGggU3RyaW5nPwogIGNyZWF0ZWRfYXQgRGF0ZVRpbWU/CiAgdXBkYXRlZF9hdCBEYXRlVGltZT8KfQoKbW9kZWwgdGJsYWxidW1zewogIGlkIEludCBAaWQgQGRlZmF1bHQoYXV0b2luY3JlbWVudCgpKQogIGlkZm9sZGVyIFN0cmluZwogIHVzZXJpZCBJbnQ/CiAgdGl0bGUgU3RyaW5nPwogIGNyZWF0ZWRfYXQgRGF0ZVRpbWU/CiAgdXBkYXRlZF9hdCBEYXRlVGltZT8KfQoKbW9kZWwgdGJsaGlzdG9yeXsKICBpZCBJbnQgQGlkIEBkZWZhdWx0KGF1dG9pbmNyZW1lbnQoKSkKICB1c2VyaWQgSW50PwogIHBob3RvaWQgSW50PwogIGRhdGUgRGF0ZVRpbWU/CiAgY3JlYXRlZF9hdCBEYXRlVGltZT8KICB1cGRhdGVkX2F0IERhdGVUaW1lPwp9CgoK',
+          r'Ly8gVGhpcyBpcyB5b3VyIFByaXNtYSBzY2hlbWEgZmlsZSwKLy8gbGVhcm4gbW9yZSBhYm91dCBpdCBpbiB0aGUgZG9jczogaHR0cHM6Ly9wcmlzLmx5L2QvcHJpc21hLXNjaGVtYQoKZ2VuZXJhdG9yIGNsaWVudCB7CiAgcHJvdmlkZXIgPSAiZGFydCBydW4gb3JtIgp9CgpkYXRhc291cmNlIGRiIHsKICBwcm92aWRlciA9ICJteXNxbCIKICB1cmwgICAgICA9IGVudigiREFUQUJBU0VfVVJMIikKfQoKbW9kZWwgdXNlciB7CiAgaWQgSW50IEBpZCBAZGVmYXVsdChhdXRvaW5jcmVtZW50KCkpCiAgZm5hbWUgU3RyaW5nPwogIGxuYW1lIFN0cmluZz8KICBlbWFpbCBTdHJpbmc/CiAgcGhvbmUgU3RyaW5nPwogIHBhc3N3b3JkIFN0cmluZz8KICBwcm9maWxlIFN0cmluZz8KICByb2xlIFN0cmluZz8KICBjcmVhdGVkX2F0IERhdGVUaW1lPwogIHVwZGF0ZWRfYXQgRGF0ZVRpbWU/Cn0KCm1vZGVsIHRibFBob3RvewogIGlkIEludCBAaWQgQGRlZmF1bHQoYXV0b2luY3JlbWVudCgpKQogIGFsYnVtc2lkIEludD8KICB0aXRsZSBTdHJpbmc/CiAgZGF0ZSBEYXRlVGltZT8KICB1cmwgU3RyaW5nPwogIHBhdGggU3RyaW5nPwogIGNyZWF0ZWRfYXQgRGF0ZVRpbWU/CiAgdXBkYXRlZF9hdCBEYXRlVGltZT8KfQoKbW9kZWwgdGJsYWxidW1zewogIGlkIEludCBAaWQgQGRlZmF1bHQoYXV0b2luY3JlbWVudCgpKQogIGlkZm9sZGVyIFN0cmluZwogIHVzZXJpZCBJbnQ/CiAgdGl0bGUgU3RyaW5nPwogIGNyZWF0ZWRfYXQgRGF0ZVRpbWU/CiAgdXBkYXRlZF9hdCBEYXRlVGltZT8KfQoKbW9kZWwgdGJsaGlzdG9yeXsKICBpZCBJbnQgQGlkIEBkZWZhdWx0KGF1dG9pbmNyZW1lbnQoKSkKICB1c2VyaWQgSW50PwogIHBob3RvaWQgSW50PwogIGRhdGUgRGF0ZVRpbWU/CiAgY3JlYXRlZF9hdCBEYXRlVGltZT8KICB1cGRhdGVkX2F0IERhdGVUaW1lPwp9CgoK',
       datasources: datasources?.toJson().cast() ?? const {},
       executable:
           r'D:\Dart server\photo_api\node_modules\prisma\query-engine-windows.exe',
@@ -8095,8 +8087,7 @@ class PrismaClient extends _i1.BasePrismaClient<PrismaClient> {
         headers: _headers,
         transaction: _transaction,
       );
-
-  int? fetchUserFromToken(String token) {
+    int? fetchUserFromToken(String token) {
     try {
       final jwt = JWT.verify(token, SecretKey("photoapitest"));
       return jwt.payload as int;
